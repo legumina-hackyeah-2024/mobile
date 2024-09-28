@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@apollo/client": "^3.11.8",
+    "@expo-google-fonts/caveat-brush": "^0.2.3",
+    "@expo-google-fonts/sofia-sans": "^0.2.3",
     "@expo-google-fonts/sunshiney": "^0.2.3",
     "@expo/vector-icons": "^14.0.3",
     "@react-native-community/masked-view": "^0.1.11",

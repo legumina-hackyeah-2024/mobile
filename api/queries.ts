@@ -4,13 +4,23 @@ const GET_ROUTES = gql`
   query Routes {
   routes {
     id
+    hero {
+      name
+      description
+      picture
+    }
     title
     description
-    icon
     distance
     difficulty
     lat
     lng
+    points {
+      title
+      description
+      lat
+      lng
+    }
   }
 }
 `;

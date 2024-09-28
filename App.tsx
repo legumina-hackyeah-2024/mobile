@@ -10,7 +10,9 @@ import BottomTabNavigator from "./navigation/TabNavigator";
 import {Login} from "./screens/Login";
 import FollowerMap from "./components/Map/FollowerMap";
 import {useFonts} from "expo-font";
-import {Sunshiney_400Regular} from "@expo-google-fonts/sunshiney";
+import {CaveatBrush_400Regular} from "@expo-google-fonts/caveat-brush";
+import {SofiaSans_300Light} from "@expo-google-fonts/sofia-sans";
+
 
 const Stack = createStackNavigator();
 
@@ -25,7 +27,8 @@ const screenOptionStyle = {
 
 export default function App() {
     const [fontsLoaded] = useFonts({
-        Sunshiney_400Regular
+        CaveatBrush_400Regular,
+        SofiaSans_300Light
     });
 
     if (!fontsLoaded) {

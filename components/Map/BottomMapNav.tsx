@@ -1,7 +1,5 @@
 import {Dimensions, StyleSheet, Text, View} from "react-native";
 import React from "react";
-import {useFonts} from "expo-font";
-import { Sunshiney_400Regular } from "@expo-google-fonts/sunshiney";
 import {NextStationStage} from "../MapNavStages/NextStationStage";
 import {CloseStage} from "../MapNavStages/CloseStage";
 import {QuestionStage} from "../MapNavStages/QuestionStage";

@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
         width: '80%',
     },
     formattedText: {
-        fontFamily: 'Sunshiney_400Regular',
+        fontFamily: 'CaveatBrush_400Regular',
         fontSize: 30
     },
     informationContent: {

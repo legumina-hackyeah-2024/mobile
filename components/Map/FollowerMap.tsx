@@ -1,18 +1,19 @@
-import React, {useEffect, useRef, useState} from "react";
-import {Dimensions, Image, StyleSheet, View,} from "react-native";
+import React, { useEffect, useRef, useState } from "react";
+import { Dimensions, Image, StyleSheet, View } from "react-native";
 import * as Location from "expo-location";
-import MapView, {Marker} from "react-native-maps";
+import MapView, { Marker } from "react-native-maps";
 import MapViewDirections from "react-native-maps-directions";
-import {BottomMapNav} from "./BottomMapNav";
+import { BottomMapNav } from "./BottomMapNav";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
-const FollowerMap = ({navigation, route}: any) => {
+const FollowerMap = ({ navigation, route }: any) => {
     const [currentLocation, setCurrentLocation]: any = useState(null);
     const [initialRegion, setInitialRegion]: any = useState(null);
     const [elapsedTime, setElapsedTime] = useState<number>(0);
-    let _mapView: any = useRef<MapView>(null);
+    let _mapView: any = useRef<MapView>(null); // Ref to control the map view
+
     const startingPoint = route.params.propsData;
     const points = route.params.data.route.points;
     const [currentPoint, setCurrentPoint] = useState<number>(0);
@@ -36,7 +37,7 @@ const FollowerMap = ({navigation, route}: any) => {
         for (let i = currentPoint; i < points.length; i++) {
             const endPoint = points[i];
             totalDistance += calculateDistance(startPoint.latitude, startPoint.longitude, endPoint.lat, endPoint.lng);
-            startPoint = {latitude: endPoint.lat, longitude: endPoint.lng};
+            startPoint = { latitude: endPoint.lat, longitude: endPoint.lng };
         }
 
         return totalDistance;
@@ -71,40 +72,59 @@ const FollowerMap = ({navigation, route}: any) => {
                 setIsClose(false);
             }
 
+            // Dynamically animate the map to the user's current location
             _mapView.current?.animateToRegion({
                 latitude: currentLocation.latitude,
                 longitude: currentLocation.longitude,
                 latitudeDelta: 0.003,
                 longitudeDelta: 0.003,
-            }, 100);
+            }, 500);
 
             const totalDistance = calculateTotalDistanceLeft(currentLocation, points, currentPoint);
             setTotalDistanceLeft(totalDistance);
         }
     }, [currentLocation, currentPoint, points]);
 
-
+    // Watch position and move map dynamically to the user's location
     useEffect(() => {
-        const getLocation = async () => {
-            let {status} = await Location.requestForegroundPermissionsAsync();
+        let locationSubscription: any;
+
+        const startLocationTracking = async () => {
+            let { status } = await Location.requestForegroundPermissionsAsync();
 
             if (status !== "granted") {
+                console.error("Location permission not granted");
                 return;
             }
 
-            let location = await Location.getCurrentPositionAsync({});
-            setCurrentLocation(location.coords);
+            locationSubscription = await Location.watchPositionAsync(
+                {
+                    accuracy: Location.Accuracy.High,
+                    timeInterval: 500,
+                    distanceInterval: 0.1,
+                },
+                (location) => {
+                    setCurrentLocation(location.coords);
 
-            setInitialRegion({
-                latitude: location.coords.latitude,
-                longitude: location.coords.longitude,
-                latitudeDelta: 0.003,
-                longitudeDelta: 0.003,
-            });
-
+                    if (!initialRegion) {
+                        setInitialRegion({
+                            latitude: location.coords.latitude,
+                            longitude: location.coords.longitude,
+                            latitudeDelta: 0.003,
+                            longitudeDelta: 0.003,
+                        });
+                    }
+                }
+            );
         };
 
-        getLocation();
+        startLocationTracking();
+
+        return () => {
+            if (locationSubscription) {
+                locationSubscription.remove();
+            }
+        };
     }, []);
 
     useEffect(() => {
@@ -119,60 +139,68 @@ const FollowerMap = ({navigation, route}: any) => {
         <View style={styles.container}>
             {initialRegion && (
                 <>
-                    <MapView style={styles.map}
-                             initialRegion={initialRegion}
-                             ref={(current) => {
-                                 // @ts-ignore
-                                 _mapView.current = current;
-                             }}
-                             zoomTapEnabled
-                             zoomControlEnabled
-                             showsBuildings={false}
-                             customMapStyle={mapStyle}
+                    <MapView
+                        style={styles.map}
+                        initialRegion={initialRegion}
+                        ref={(current) => {
+                            _mapView.current = current;
+                        }}
+                        zoomTapEnabled
+                        zoomControlEnabled
+                        showsBuildings={false}
+                        customMapStyle={mapStyle}
                     >
                         {currentLocation && (
                             <>
-                                <Marker coordinate={{
-                                    latitude: currentLocation.latitude,
-                                    longitude: currentLocation.longitude
-                                }}>
+                                {/* Dynamic current location marker */}
+                                <Marker
+                                    coordinate={{
+                                        latitude: currentLocation.latitude,
+                                        longitude: currentLocation.longitude,
+                                    }}
+                                >
                                     <Image
-                                        style={{width: 20, height: 20}}
-                                        source={require('../../assets/icons/current_location.png')}
+                                        style={{ width: 20, height: 20 }}
+                                        source={require("../../assets/icons/current_location.png")}
                                     />
                                 </Marker>
-                                <Marker coordinate={{
-                                    latitude: points[currentPoint].lat,
-                                    longitude: points[currentPoint].lng
-                                }}>
+
+                                <Marker
+                                    coordinate={{
+                                        latitude: points[currentPoint].lat,
+                                        longitude: points[currentPoint].lng,
+                                    }}
+                                >
                                     <Image
-                                        style={{width: 25, height: 32.5}}
-                                        source={require('../../assets/icons/map_destination_ping.png')}
+                                        style={{ width: 25, height: 32.5 }}
+                                        source={require("../../assets/icons/map_destination_ping.png")}
                                     />
                                 </Marker>
+
                                 <MapViewDirections
                                     key={points[currentPoint].title}
-                                    mode={'WALKING'}
+                                    mode={"WALKING"}
                                     origin={{
                                         latitude: currentLocation.latitude,
-                                        longitude: currentLocation.longitude
+                                        longitude: currentLocation.longitude,
                                     }}
                                     destination={{
                                         latitude: points[currentPoint].lat,
-                                        longitude: points[currentPoint].lng
+                                        longitude: points[currentPoint].lng,
                                     }}
                                     apikey={process.env.EXPO_PUBLIC_API_KEY!}
                                 />
                             </>
                         )}
                     </MapView>
-                    <BottomMapNav nextStation='Jakas stacja'
-                                  theme='Trasa historyczna'
-                                  duration={elapsedTime}
-                                  stage={stage}
-                                  goNextStage={goNextPoint}
-                                  goToExercise={goToExercise}
-                                  distanceLeft={Math.round(totalDistanceLeft * 100) / 100}
+                    <BottomMapNav
+                        nextStation="Jakas stacja"
+                        theme="Trasa historyczna"
+                        duration={elapsedTime}
+                        stage={stage}
+                        goNextStage={goNextPoint}
+                        goToExercise={goToExercise}
+                        distanceLeft={Math.round(totalDistanceLeft * 100) / 100}
                     />
                 </>
             )}
@@ -188,30 +216,29 @@ const styles = StyleSheet.create({
     },
     map: {
         width: "100%",
-        height: Dimensions.get('window').height * 0.7,
+        height: Dimensions.get("window").height * 0.7,
     },
 });
 
-const mapStyle =
-    [
-        {
-            "featureType": "poi.business",
-            "elementType": "labels.text.fill",
-            "stylers": [
-                {
-                    "visibility": "off"
-                }
-            ]
-        },
-        {
-            "featureType": "poi.business",
-            "elementType": "labels.text.stroke",
-            "stylers": [
-                {
-                    "visibility": "off"
-                }
-            ]
-        }
-    ];
+const mapStyle = [
+    {
+        featureType: "poi.business",
+        elementType: "labels.text.fill",
+        stylers: [
+            {
+                visibility: "off",
+            },
+        ],
+    },
+    {
+        featureType: "poi.business",
+        elementType: "labels.text.stroke",
+        stylers: [
+            {
+                visibility: "off",
+            },
+        ],
+    },
+];
 
 export default FollowerMap;

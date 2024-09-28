@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
         gap: Dimensions.get('window').height * 0.02
     },
     formattedText: {
-        fontFamily: 'Sunshiney_400Regular',
+        fontFamily: 'CaveatBrush_400Regular',
         fontSize: 40
     },
     buttonStyle: {

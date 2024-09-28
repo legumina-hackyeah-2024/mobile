@@ -111,8 +111,8 @@ const Map = ({navigation}: any) => {
 
                             >
                                 <Image
-                                    style={{width: 30, height: 30}}
-                                    source={require('../../assets/icons/map_pin.png')}
+                                    style={{width: 40, height: 40, borderRadius: 100}}
+                                    src={marker.hero.picture}
                                 />
                             </Marker>
                         }))}

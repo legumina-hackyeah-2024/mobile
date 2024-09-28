@@ -1,24 +1,40 @@
 import React from "react";
-import {StyleSheet, Text, View} from "react-native";
+import {Image, StyleSheet, Text, View} from "react-native";
 
 const Header = () => {
     return <View style={styles.container}>
-        <Text style={styles.header}>Hej, [name]!</Text>
+        <View style={styles.hiContainer}>
+            <Text style={styles.header}>Hej, Kuba! </Text>
+            <Image
+                style={{width: 35, height: 35}}
+                source={require("../assets/icons/hi_icon.png")}
+            />
+        </View>
         <Text style={styles.content}>Co chcesz dzisiaj odkryć</Text>
     </View>
 }
 
 const styles = StyleSheet.create({
+    hiContainer: {
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: "center",
+    },
     container: {
-      backgroundColor: 'white',
-        rowGap: 5,
-        padding: 15
+        backgroundColor: 'white',
+        rowGap: 10,
+        paddingHorizontal: 30,
+        paddingVertical: 25
     },
     header: {
-        fontSize: 40,
+        fontSize: 50,
+        fontFamily: 'CaveatBrush_400Regular',
+        color: '#295046'
     },
     content: {
-        fontSize: 17
+        fontSize: 17,
+        color: '#295046',
+        fontFamily: 'Sofia Sans'
     }
 })
 
