@@ -4,17 +4,36 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="30b3ca93-8500-4d59-9c29-ea3008e442e8" name="Changes" comment="postacie in progress">
+    <list default="true" id="30b3ca93-8500-4d59-9c29-ea3008e442e8" name="Changes" comment="person screen done">
       <change afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/screens/PersonDetails.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/icons/settings.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/Map/IdleMapPathRender.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/screens/Profile/Badges.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/screens/Profile/Profile.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/screens/Profile/UserHeader.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/screens/Settings.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/queries.ts" beforeDir="false" afterPath="$PROJECT_DIR$/api/queries.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/BottomDrawer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/BottomDrawer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Map.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/Map/Map.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/MarkerDetails.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/Map/MarkerDetails.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/navigation/StackNavigator.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/navigation/StackNavigator.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/screens/People.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/screens/People.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/navigation/TabNavigator.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/navigation/TabNavigator.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/screens/Home.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/screens/Home.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/screens/Login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/screens/Login.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/screens/Profile.tsx" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="TypeScript JSX File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -66,6 +85,8 @@
       <recent name="$PROJECT_DIR$/api" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/components/Map" />
+      <recent name="$PROJECT_DIR$/screens/Profile" />
       <recent name="$PROJECT_DIR$/api" />
     </key>
   </component>
@@ -114,7 +135,7 @@
       <workItem from="1727300006740" duration="26000" />
       <workItem from="1727300100889" duration="1360000" />
       <workItem from="1727330511076" duration="11000" />
-      <workItem from="1727521824316" duration="20576000" />
+      <workItem from="1727521824316" duration="28220000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -204,7 +225,15 @@
       <option name="project" value="LOCAL" />
       <updated>1727542081015</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="person screen done">
+      <option name="closed" value="true" />
+      <created>1727542758339</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1727542758339</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -229,6 +258,7 @@
     <MESSAGE value="apolloe" />
     <MESSAGE value="working lol" />
     <MESSAGE value="postacie in progress" />
-    <option name="LAST_COMMIT_MESSAGE" value="postacie in progress" />
+    <MESSAGE value="person screen done" />
+    <option name="LAST_COMMIT_MESSAGE" value="person screen done" />
   </component>
 </project>

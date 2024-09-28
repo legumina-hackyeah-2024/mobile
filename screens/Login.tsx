@@ -6,7 +6,8 @@ import * as WebBrowser from 'expo-web-browser';
 export function Login() {
 
     const login = async () => {
-        const result = await WebBrowser.openAuthSessionAsync('https://treasures-of-poland.up.railway.app/google?redirect_uri=http://localhost:3000');
+        const result = await WebBrowser.openAuthSessionAsync('https://treasures-of-poland.up.railway.app/google');
+        console.log(result)
     }
 
     return <View style={styles.container}>

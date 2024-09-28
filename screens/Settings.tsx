@@ -1,8 +1,8 @@
 import React from "react";
 import {Text, View} from "react-native";
 
-export function Profile() {
+export function Settings({navigation, route}: any) {
     return <View>
-        <Text>Profile</Text>
+        <Text>Settings</Text>
     </View>
 }

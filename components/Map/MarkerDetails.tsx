@@ -1,6 +1,7 @@
 import React from "react";
-import {Button, StyleSheet, Text, View} from "react-native";
-import {Route} from "../api/types";
+import {Button, Dimensions, SafeAreaView, ScrollView, StyleSheet, Text, View} from "react-native";
+import {Route} from "../../api/types";
+import {IdleMapPathRender} from "./IdleMapPathRender";
 
 interface MarkerDetailsProps {
     data: Route
@@ -13,9 +14,15 @@ export function MarkerDetails({data}: MarkerDetailsProps) {
             <Text>Długość: {data.distance} km</Text>
             <Text>Trudność: {[...Array(data.difficulty)].map(() => '*')}</Text>
         </View>
-        <View style={styles.textArea}>
-            <Text numberOfLines={10} ellipsizeMode='head'>{data.description}</Text>
-        </View>
+        <SafeAreaView>
+            <ScrollView style={styles.textArea}>
+                <Text numberOfLines={10} ellipsizeMode='head'>{data.description}</Text>
+                <View>
+                    <IdleMapPathRender path={data}/>
+                </View>
+            </ScrollView>
+        </SafeAreaView>
+
         <View>
             <Button color='black' title='Czytaj więcej'/>
         </View>
@@ -32,8 +39,8 @@ const styles = StyleSheet.create({
         gap: 10
     },
     textArea: {
-        height: 150,
-        overflow: "hidden",
+        minHeight: Dimensions.get('window').height * 0.4,
+        overflow: "scroll",
     },
     title: {
         fontSize: 27,

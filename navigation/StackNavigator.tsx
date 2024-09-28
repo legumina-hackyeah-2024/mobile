@@ -1,11 +1,11 @@
-
 import React from "react";
-import { createStackNavigator } from "@react-navigation/stack";
+import {createStackNavigator} from "@react-navigation/stack";
 
 import Home from "../screens/Home";
 import {People} from "../screens/People";
-import {Profile} from "../screens/Profile";
+import {Profile} from "../screens/Profile/Profile";
 import {PersonDetails} from "../screens/PersonDetails";
+import {Settings} from "../screens/Settings";
 
 const Stack = createStackNavigator();
 
@@ -21,19 +21,20 @@ const screenOptionStyle = {
 const TracksStackNavigator = () => {
     return (
         <Stack.Navigator screenOptions={screenOptionStyle}>
-            <Stack.Screen name="Tracks" component={Home} />
+            <Stack.Screen name="Tracks" component={Home}/>
         </Stack.Navigator>
     );
 }
 
 const PeopleStackNavigator = () => {
     return (
-        <Stack.Navigator screenOptions={{...screenOptionStyle,
+        <Stack.Navigator screenOptions={{
+            ...screenOptionStyle,
             headerTitleAlign: 'left',
             headerShown: true,
             title: 'Postacie',
         }}>
-            <Stack.Screen name="People" component={People} />
+            <Stack.Screen name="People" component={People}/>
             <Stack.Screen name="PersonDetails"
                           component={PersonDetails}
                           options={{headerBackTitle: '', headerTitle: '', headerTintColor: 'black'}}
@@ -45,10 +46,16 @@ const PeopleStackNavigator = () => {
 const ProfileStackNavigator = () => {
     return (
         <Stack.Navigator screenOptions={screenOptionStyle}>
-            <Stack.Screen name="Profile" component={Profile} />
+            <Stack.Screen name="Profile" component={Profile} options={{headerShown: false}}/>
+            <Stack.Screen name="Settings" component={Settings} options={{
+                headerShown: true,
+                headerTitle: '',
+                headerBackTitle: '',
+                headerTintColor: 'black'
+            }}/>
         </Stack.Navigator>
     );
 }
 
 
-export { TracksStackNavigator, PeopleStackNavigator, ProfileStackNavigator };
+export {TracksStackNavigator, PeopleStackNavigator, ProfileStackNavigator};

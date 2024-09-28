@@ -8,11 +8,11 @@ import {
 } from "react-native";
 import * as Location from "expo-location";
 import MapView, {Marker} from "react-native-maps";
-import {MOCKED_MARKERS} from "../api/mocked";
-import CustomBottomDrawer from "./BottomDrawer";
+import {MOCKED_MARKERS} from "../../api/mocked";
+import CustomBottomDrawer from "../BottomDrawer";
 import {MarkerDetails} from "./MarkerDetails";
 import {useQuery} from "@apollo/client";
-import {GET_ROUTES} from "../api/queries";
+import {GET_ROUTES} from "../../api/queries";
 import MapViewDirections from 'react-native-maps-directions';
 
 
@@ -20,14 +20,29 @@ const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
 const Map = () => {
-    const {loading, error, data} = useQuery(GET_ROUTES);
+    const {loading, error, data}: any = useQuery(GET_ROUTES);
     const [currentLocation, setCurrentLocation]: any = useState(null);
     const [initialRegion, setInitialRegion]: any = useState(null);
     const [isDrawerOpened, setDrawerOpened]: any = useState(false);
     const currentMarker: any = useRef();
+    let _mapView: any = useRef<MapView>(null);
+
+    useEffect(() => {
+        if(currentMarker.current && _mapView.current) {
+            _mapView.current.animateToRegion({
+                    longitude: currentMarker.current.lng,
+                    latitude: currentMarker.current.lat - 0.003,
+                    latitudeDelta: 0.010,
+                    longitudeDelta: 0.010,
+                },
+                500)
+        }
+
+    }, [isDrawerOpened])
 
     const openDrawer = (marker: any) => {
         currentMarker.current = marker;
+
         setDrawerOpened(true);
     };
 
@@ -35,8 +50,6 @@ const Map = () => {
         setDrawerOpened(false)
     };
 
-    const onRegionChange = (region: any) => {
-    }
 
     useEffect(() => {
         const getLocation = async () => {
@@ -52,23 +65,25 @@ const Map = () => {
             setInitialRegion({
                 latitude: location.coords.latitude,
                 longitude: location.coords.longitude,
-                latitudeDelta: 0.005,
-                longitudeDelta: 0.005,
+                latitudeDelta: 0.015,
+                longitudeDelta: 0.015,
             });
         };
 
         getLocation();
     }, []);
 
-
     return (
         <View style={styles.container}>
             {initialRegion && (
                 <MapView style={styles.map}
                          initialRegion={initialRegion}
+                         ref={(current) => {
+                             // @ts-ignore
+                             _mapView.current = current
+                         }}
                          zoomTapEnabled
                          zoomControlEnabled
-                         onRegionChangeComplete={onRegionChange}
                          showsBuildings={false}
                          customMapStyle={mapStyle}
                 >
@@ -82,35 +97,25 @@ const Map = () => {
                         />
                     )}
 
-                    {currentLocation && (
-                        MOCKED_MARKERS.map(marker => {
+                    {!loading && (
+                        data.routes.map((marker: any) => {
                             return <Marker
                                 key={marker.title}
                                 coordinate={{
                                     latitude: marker.lat,
                                     longitude: marker.lng,
                                 }}
+
                                 title={marker.title}
                                 onPress={() => openDrawer(marker)}
 
                             >
                                 <Image
                                     style={{width: 30, height: 30}}
-                                    source={require('../assets/icons/map_pin.png')}
+                                    source={require('../../assets/icons/map_pin.png')}
                                 />
                             </Marker>
                         }))}
-                    <MapViewDirections
-                        mode={'WALKING'}
-                        origin={{
-                        latitude: MOCKED_MARKERS[0].lat,
-                        longitude: MOCKED_MARKERS[0].lng
-                    }}
-                                       destination={{
-                                           latitude: MOCKED_MARKERS[1].lat,
-                                           longitude: MOCKED_MARKERS[1].lng
-                                       }}
-                                       apikey={process.env.EXPO_PUBLIC_API_KEY!}/>
                 </MapView>
             )}
             {isDrawerOpened && <CustomBottomDrawer onClose={closeDrawer}>
