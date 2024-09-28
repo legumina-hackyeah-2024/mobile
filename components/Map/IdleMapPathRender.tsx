@@ -6,10 +6,8 @@ import MapView from "react-native-maps";
 import {Dimensions, StyleSheet} from "react-native";
 
 export function IdleMapPathRender({path, data, loading}: any) {
-
     if(loading)
         return <></>
-
 
     const renderPaths = (points: any) => {
         const ret = []
@@ -43,7 +41,7 @@ export function IdleMapPathRender({path, data, loading}: any) {
                     }}
                     onTouchMove={(event) => event.preventDefault()}
     >
-        {/*{renderPaths(data.route.points)}*/}
+        {renderPaths(data.route.points)}
     </MapView>
 
 }

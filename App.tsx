@@ -1,6 +1,6 @@
 import {NavigationContainer} from "@react-navigation/native";
 import React from "react";
-import {AppRegistry, Dimensions, StyleSheet, View} from "react-native";
+import {AppRegistry, Dimensions, StyleSheet, Text, View} from "react-native";
 import {ApolloClient, ApolloProvider, InMemoryCache} from "@apollo/client";
 import {client} from "./api/ApolloClient";
 import Home from "./screens/Home";
@@ -9,6 +9,8 @@ import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 import BottomTabNavigator from "./navigation/TabNavigator";
 import {Login} from "./screens/Login";
 import FollowerMap from "./components/Map/FollowerMap";
+import {useFonts} from "expo-font";
+import {Sunshiney_400Regular} from "@expo-google-fonts/sunshiney";
 
 const Stack = createStackNavigator();
 
@@ -22,6 +24,16 @@ const screenOptionStyle = {
 };
 
 export default function App() {
+    const [fontsLoaded] = useFonts({
+        Sunshiney_400Regular
+    });
+
+    if (!fontsLoaded) {
+        return <Text>Loading...</Text>;
+    }
+
+    // 50.061522, 19.939093
+
     return <ApolloProvider client={client}>
             <NavigationContainer>
                 <Stack.Navigator screenOptions={screenOptionStyle}>

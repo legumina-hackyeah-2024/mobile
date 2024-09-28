@@ -4,16 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="30b3ca93-8500-4d59-9c29-ea3008e442e8" name="Changes" comment="IT WORKS LOL">
+    <list default="true" id="30b3ca93-8500-4d59-9c29-ea3008e442e8" name="Changes" comment="more work">
       <change afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/icons/current_location.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/Map/BottomMapNav.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/fonts/Sunshiney-Regular.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/icons/map_destination_ping.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/MapNavStages/CloseStage.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/MapNavStages/NextStationStage.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/MapNavStages/QuestionStage.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Map/BottomMapNav.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/Map/BottomMapNav.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/Map/FollowerMap.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/Map/FollowerMap.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/Map/IdleMapPathRender.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/Map/IdleMapPathRender.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Map/Map.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/Map/Map.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Map/MarkerDetails.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/Map/MarkerDetails.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,7 +63,7 @@
     "React Native.iOS.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "/Users/mateusz.jamroz/dev/react-native-pg/navigation/components/Map",
+    "last_opened_file_path": "/Users/mateusz.jamroz/dev/react-native-pg/navigation/components/MapNavStages",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -73,6 +77,8 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/components/MapNavStages" />
+      <recent name="$PROJECT_DIR$/assets/fonts" />
       <recent name="$PROJECT_DIR$/components/Map" />
       <recent name="$PROJECT_DIR$/screens" />
       <recent name="$PROJECT_DIR$/api" />
@@ -128,7 +134,7 @@
       <workItem from="1727300006740" duration="26000" />
       <workItem from="1727300100889" duration="1360000" />
       <workItem from="1727330511076" duration="11000" />
-      <workItem from="1727521824316" duration="31510000" />
+      <workItem from="1727521824316" duration="37789000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -242,7 +248,15 @@
       <option name="project" value="LOCAL" />
       <updated>1727552847807</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="more work">
+      <option name="closed" value="true" />
+      <created>1727555167288</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1727555167288</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -263,13 +277,25 @@
     <MESSAGE value="more work with login and oauth" />
     <MESSAGE value="i guess working modal somehow XD" />
     <MESSAGE value="dynamic bottom drawer rendering" />
-    <MESSAGE value="more work" />
     <MESSAGE value="apolloe" />
     <MESSAGE value="working lol" />
     <MESSAGE value="postacie in progress" />
     <MESSAGE value="person screen done" />
     <MESSAGE value="working path" />
     <MESSAGE value="IT WORKS LOL" />
-    <option name="LAST_COMMIT_MESSAGE" value="IT WORKS LOL" />
+    <MESSAGE value="more work" />
+    <option name="LAST_COMMIT_MESSAGE" value="more work" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/components/Map/BottomMapNav.tsx</url>
+          <line>38</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
