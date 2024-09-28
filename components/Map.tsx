@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import {
     StyleSheet,
     View,
@@ -9,7 +9,8 @@ import {
 import * as Location from "expo-location";
 import MapView, {Marker} from "react-native-maps";
 import {MOCKED_MARKERS} from "../api/mocked";
-import {DrawerModal} from "./DrawerModal";
+import CustomBottomDrawer from "./BottomDrawer";
+import {MarkerDetails} from "./MarkerDetails";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -18,14 +19,16 @@ const Map = () => {
     // const { loading, error, data } = useQuery(GET_DOGS);
     const [currentLocation, setCurrentLocation]: any = useState(null);
     const [initialRegion, setInitialRegion]: any = useState(null);
-    const [isDrawerOpen, setDrawerOpen] = useState(false);
+    const [isDrawerOpened, setDrawerOpened]: any = useState(false);
+    const currentMarker: any = useRef();
 
-    const openDrawer = () => {
-        setDrawerOpen(true);
+    const openDrawer = (marker: any) => {
+        currentMarker.current = marker;
+        setDrawerOpened(true);
     };
 
     const closeDrawer = () => {
-        setDrawerOpen(false);
+        setDrawerOpened(false)
     };
 
     const onRegionChange = (region: any) => {
@@ -84,7 +87,7 @@ const Map = () => {
                                     longitude: marker.lon,
                                 }}
                                 title={marker.title}
-                                onPress={() => openDrawer()}
+                                onPress={() => openDrawer(marker)}
 
                             >
                                 <Image
@@ -95,10 +98,9 @@ const Map = () => {
                         }))}
                 </MapView>
             )}
-            <DrawerModal isDrawerOpen={isDrawerOpen}
-                         closeDrawer={closeDrawer}
-
-            />
+            {isDrawerOpened && <CustomBottomDrawer onClose={closeDrawer}>
+                <MarkerDetails data={currentMarker.current}/>
+            </CustomBottomDrawer>}
         </View>
     );
 };
