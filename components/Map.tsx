@@ -13,12 +13,14 @@ import CustomBottomDrawer from "./BottomDrawer";
 import {MarkerDetails} from "./MarkerDetails";
 import {useQuery} from "@apollo/client";
 import {GET_ROUTES} from "../api/queries";
+import MapViewDirections from 'react-native-maps-directions';
+
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
 const Map = () => {
-    const { loading, error, data } = useQuery(GET_ROUTES);
+    const {loading, error, data} = useQuery(GET_ROUTES);
     const [currentLocation, setCurrentLocation]: any = useState(null);
     const [initialRegion, setInitialRegion]: any = useState(null);
     const [isDrawerOpened, setDrawerOpened]: any = useState(false);
@@ -98,6 +100,17 @@ const Map = () => {
                                 />
                             </Marker>
                         }))}
+                    <MapViewDirections
+                        mode={'WALKING'}
+                        origin={{
+                        latitude: MOCKED_MARKERS[0].lat,
+                        longitude: MOCKED_MARKERS[0].lng
+                    }}
+                                       destination={{
+                                           latitude: MOCKED_MARKERS[1].lat,
+                                           longitude: MOCKED_MARKERS[1].lng
+                                       }}
+                                       apikey={process.env.EXPO_PUBLIC_API_KEY!}/>
                 </MapView>
             )}
             {isDrawerOpened && <CustomBottomDrawer onClose={closeDrawer}>
