@@ -3,8 +3,8 @@ import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 
 import Home from "../screens/Home";
-import About from "../screens/About";
-import Contact from "../screens/Contact";
+import {People} from "../screens/People";
+import {Profile} from "../screens/Profile";
 
 const Stack = createStackNavigator();
 
@@ -17,20 +17,29 @@ const screenOptionStyle = {
     headerShown: false
 };
 
-const MainStackNavigator = () => {
+const TracksStackNavigator = () => {
     return (
         <Stack.Navigator screenOptions={screenOptionStyle}>
-            <Stack.Screen name="Home3" component={Home} />
+            <Stack.Screen name="Tracks" component={Home} />
         </Stack.Navigator>
     );
 }
 
-const ContactStackNavigator = () => {
+const PeopleStackNavigator = () => {
     return (
         <Stack.Navigator screenOptions={screenOptionStyle}>
-            <Stack.Screen name="Contact2" component={Contact} />
+            <Stack.Screen name="People" component={People} />
         </Stack.Navigator>
     );
 }
 
-export { MainStackNavigator, ContactStackNavigator };
+const ProfileStackNavigator = () => {
+    return (
+        <Stack.Navigator screenOptions={screenOptionStyle}>
+            <Stack.Screen name="Profile" component={Profile} />
+        </Stack.Navigator>
+    );
+}
+
+
+export { TracksStackNavigator, PeopleStackNavigator, ProfileStackNavigator };

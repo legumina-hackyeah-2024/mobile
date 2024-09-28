@@ -4,17 +4,31 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="30b3ca93-8500-4d59-9c29-ea3008e442e8" name="Changes" comment="init">
-      <change afterPath="$PROJECT_DIR$/App.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/ApolloClient.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/queries.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/Map.tsx" afterDir="false" />
+    <list default="true" id="30b3ca93-8500-4d59-9c29-ea3008e442e8" name="Changes" comment="base navigation UI design">
+      <change afterPath="$PROJECT_DIR$/app.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/adaptive-icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/favicon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/icons/home.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/icons/map_pin.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/icons/people.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/icons/profile.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/splash.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/babel.config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/Header.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/screens/People.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/screens/Profile.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/navigation/DrawerNavigator.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/navigation/DrawerNavigator.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Map.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/Map.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/navigation/DrawerNavigator.tsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/navigation/StackNavigator.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/navigation/StackNavigator.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/navigation/TabNavigator.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/navigation/TabNavigator.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/screens/About.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/screens/Contact.tsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/screens/Home.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/screens/Home.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -54,7 +68,7 @@
     "React Native.iOS.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "/Users/mateusz.jamroz/dev/react-native-pg/navigation/api",
+    "last_opened_file_path": "/Users/mateusz.jamroz/dev/react-native-pg/navigation/screens",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -68,6 +82,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/screens" />
       <recent name="$PROJECT_DIR$/api" />
     </key>
   </component>
@@ -116,7 +131,7 @@
       <workItem from="1727300006740" duration="26000" />
       <workItem from="1727300100889" duration="1360000" />
       <workItem from="1727330511076" duration="11000" />
-      <workItem from="1727521824316" duration="3733000" />
+      <workItem from="1727521824316" duration="6784000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -126,7 +141,15 @@
       <option name="project" value="LOCAL" />
       <updated>1727522430620</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="navigation + grapql initializaion">
+      <option name="closed" value="true" />
+      <created>1727525728596</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1727525728596</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -138,7 +161,10 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <MESSAGE value="init" />
-    <option name="LAST_COMMIT_MESSAGE" value="init" />
+    <MESSAGE value="navigation + grapql initializaion" />
+    <MESSAGE value="base navigation UI design" />
+    <option name="LAST_COMMIT_MESSAGE" value="base navigation UI design" />
   </component>
 </project>

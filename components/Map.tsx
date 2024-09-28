@@ -42,7 +42,6 @@ const Map = () => {
                 longitudeDelta: 0.005,
             });
         };
-        // 50.067877, 19.991392
 
         getLocation();
     }, []);

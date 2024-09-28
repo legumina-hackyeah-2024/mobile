@@ -1,16 +1,62 @@
 import React from "react";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 
-import { MainStackNavigator, ContactStackNavigator } from "./StackNavigator";
+import {PeopleStackNavigator, ProfileStackNavigator, TracksStackNavigator} from "./StackNavigator";
+import TabBarIcon from "@react-navigation/bottom-tabs/lib/typescript/src/views/TabBarIcon";
+import {Image} from "react-native";
 
 const Tab = createBottomTabNavigator();
 
 const BottomTabNavigator = () => {
     return (
         <Tab.Navigator screenOptions={{
-            headerShown: false
+            headerTitle: ''
         }}>
-            <Tab.Screen name="Home2" component={MainStackNavigator} />
+            <Tab.Screen name="TracksStackNavigator"
+                        component={TracksStackNavigator}
+                        options={{
+                            title: 'Trasy',
+                            tabBarIcon: ({size, color}) => {
+                                return (
+                                    <Image
+                                        style={{width: size, height: size}}
+                                        source={require('../assets/icons/home.png')}
+                                    />
+                                );
+                            },
+                            tabBarActiveTintColor: 'black'
+                        }}
+            />
+            <Tab.Screen name="PeopleStackNavigator"
+                        component={PeopleStackNavigator}
+                        options={{
+                            title: 'Postacie',
+                            tabBarIcon: ({size, color}) => {
+                                return (
+                                    <Image
+                                        style={{width: size, height: size}}
+                                        source={require('../assets/icons/people.png')}
+                                    />
+                                );
+                            },
+                            tabBarActiveTintColor: 'black'
+                        }}
+            />
+            <Tab.Screen name="ProfileStackNavigator"
+                        component={ProfileStackNavigator}
+                        options={{
+                            title: 'Profile',
+                            tabBarIcon: ({size, color}) => {
+                                return (
+                                    <Image
+                                        style={{width: size, height: size}}
+                                        source={require('../assets/icons/profile.png')}
+                                    />
+                                );
+                            },
+                            tabBarActiveTintColor: 'black'
+                        }}
+            />
         </Tab.Navigator>
     );
 };
