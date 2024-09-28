@@ -1,15 +1,13 @@
-interface Marker {
-    lat: number
-    lon: number
+interface Route {
+    id: string
     title: string
-    icon: string,
-    place: Place
-}
-
-interface Place {
     description: string
-    length: number
-    level: number,
+    icon: string
+    distance: number
+    difficulty: number
+    lat: number
+    lng: number
 }
 
-export type { Marker }
+
+export type { Route }

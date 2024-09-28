@@ -84,7 +84,7 @@ const Map = () => {
                                 key={marker.title}
                                 coordinate={{
                                     latitude: marker.lat,
-                                    longitude: marker.lon,
+                                    longitude: marker.lng,
                                 }}
                                 title={marker.title}
                                 onPress={() => openDrawer(marker)}

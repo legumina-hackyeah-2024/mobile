@@ -1,20 +1,20 @@
-import {Marker} from "../api/types";
 import React from "react";
-import {Button, Dimensions, StyleSheet, Text, View} from "react-native";
+import {Button, StyleSheet, Text, View} from "react-native";
+import {Route} from "../api/types";
 
 interface MarkerDetailsProps {
-    data: Marker
+    data: Route
 }
 
 export function MarkerDetails({data}: MarkerDetailsProps) {
     return <View style={styles.container}>
         <Text style={styles.title}>{data.title}</Text>
         <View style={styles.detailsContainer}>
-            <Text>Długość: {data.place.length} km</Text>
-            <Text>Trudność: {[...Array(data.place.level)].map(() => '*')}</Text>
+            <Text>Długość: {data.distance} km</Text>
+            <Text>Trudność: {[...Array(data.difficulty)].map(() => '*')}</Text>
         </View>
         <View style={styles.textArea}>
-            <Text numberOfLines={10} ellipsizeMode='head'>{data.place.description}</Text>
+            <Text numberOfLines={10} ellipsizeMode='head'>{data.description}</Text>
         </View>
         <View>
             <Button color='black' title='Czytaj więcej'/>
