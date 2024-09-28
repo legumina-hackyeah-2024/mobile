@@ -1,13 +1,19 @@
 import { gql, useQuery } from '@apollo/client';
 
-const GET_DOGS = gql`
-  query GetDogs {
-    dogs {
-      id
-      breed
-    }
+const GET_ROUTES = gql`
+  query Routes {
+  routes {
+    id
+    title
+    description
+    icon
+    distance
+    difficulty
+    lat
+    lng
   }
+}
 `;
 
 
-export {GET_DOGS}
+export {GET_ROUTES}

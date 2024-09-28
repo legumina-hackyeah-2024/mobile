@@ -11,12 +11,14 @@ import MapView, {Marker} from "react-native-maps";
 import {MOCKED_MARKERS} from "../api/mocked";
 import CustomBottomDrawer from "./BottomDrawer";
 import {MarkerDetails} from "./MarkerDetails";
+import {useQuery} from "@apollo/client";
+import {GET_ROUTES} from "../api/queries";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
 const Map = () => {
-    // const { loading, error, data } = useQuery(GET_DOGS);
+    const { loading, error, data } = useQuery(GET_ROUTES);
     const [currentLocation, setCurrentLocation]: any = useState(null);
     const [initialRegion, setInitialRegion]: any = useState(null);
     const [isDrawerOpened, setDrawerOpened]: any = useState(false);
