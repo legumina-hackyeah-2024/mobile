@@ -9,6 +9,7 @@ import {
 import * as Location from "expo-location";
 import MapView, {Marker} from "react-native-maps";
 import {MOCKED_MARKERS} from "../api/mocked";
+import {DrawerModal} from "./DrawerModal";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -17,9 +18,17 @@ const Map = () => {
     // const { loading, error, data } = useQuery(GET_DOGS);
     const [currentLocation, setCurrentLocation]: any = useState(null);
     const [initialRegion, setInitialRegion]: any = useState(null);
+    const [isDrawerOpen, setDrawerOpen] = useState(false);
+
+    const openDrawer = () => {
+        setDrawerOpen(true);
+    };
+
+    const closeDrawer = () => {
+        setDrawerOpen(false);
+    };
 
     const onRegionChange = (region: any) => {
-        console.log(region)
     }
 
     useEffect(() => {
@@ -75,6 +84,8 @@ const Map = () => {
                                     longitude: marker.lon,
                                 }}
                                 title={marker.title}
+                                onPress={() => openDrawer()}
+
                             >
                                 <Image
                                     style={{width: 30, height: 30}}
@@ -84,6 +95,10 @@ const Map = () => {
                         }))}
                 </MapView>
             )}
+            <DrawerModal isDrawerOpen={isDrawerOpen}
+                         closeDrawer={closeDrawer}
+
+            />
         </View>
     );
 };
