@@ -10,7 +10,12 @@ const Tab = createBottomTabNavigator();
 const BottomTabNavigator = () => {
     return (
         <Tab.Navigator screenOptions={{
-            headerTitle: ''
+            headerTitle: '',
+            headerStyle: {
+                elevation: 0,
+                shadowOpacity: 0,
+                height: 70
+            }
         }}>
             <Tab.Screen name="TracksStackNavigator"
                         component={TracksStackNavigator}

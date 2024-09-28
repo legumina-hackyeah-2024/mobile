@@ -7,6 +7,7 @@ import Home from "./screens/Home";
 import {createStackNavigator} from "@react-navigation/stack";
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 import BottomTabNavigator from "./navigation/TabNavigator";
+import {Login} from "./screens/Login";
 
 const Stack = createStackNavigator();
 
@@ -24,6 +25,7 @@ export default function App() {
             <NavigationContainer>
                 <Stack.Navigator screenOptions={screenOptionStyle}>
                     <Stack.Screen name="Test" component={BottomTabNavigator}/>
+                    <Stack.Screen name="LoginNavigator" component={Login} />
                 </Stack.Navigator>
             </NavigationContainer>
     </ApolloProvider>;
