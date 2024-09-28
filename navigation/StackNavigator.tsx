@@ -10,10 +10,10 @@ const Stack = createStackNavigator();
 
 const screenOptionStyle = {
     headerStyle: {
-        backgroundColor: "#9AC4F8",
+        elevation: 0,
+        shadowOpacity: 0,
+        height: 70
     },
-    headerTintColor: "white",
-    headerBackTitle: "Back",
     headerShown: false,
 };
 
@@ -27,7 +27,11 @@ const TracksStackNavigator = () => {
 
 const PeopleStackNavigator = () => {
     return (
-        <Stack.Navigator screenOptions={screenOptionStyle}>
+        <Stack.Navigator screenOptions={{...screenOptionStyle,
+            headerTitleAlign: 'left',
+            headerShown: true,
+            title: 'Postacie',
+        }}>
             <Stack.Screen name="People" component={People} />
         </Stack.Navigator>
     );

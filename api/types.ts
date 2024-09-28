@@ -9,5 +9,12 @@ interface Route {
     lng: number
 }
 
+interface Person {
+    id: string
+    image: string
+    name: string
+    description: string
+}
 
-export type { Route }
+
+export type { Route, Person }

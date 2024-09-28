@@ -17,21 +17,6 @@ const BottomTabNavigator = () => {
                 height: 70
             }
         }}>
-            <Tab.Screen name="TracksStackNavigator"
-                        component={TracksStackNavigator}
-                        options={{
-                            title: 'Trasy',
-                            tabBarIcon: ({size, color}) => {
-                                return (
-                                    <Image
-                                        style={{width: size, height: size}}
-                                        source={require('../assets/icons/home.png')}
-                                    />
-                                );
-                            },
-                            tabBarActiveTintColor: 'black'
-                        }}
-            />
             <Tab.Screen name="PeopleStackNavigator"
                         component={PeopleStackNavigator}
                         options={{
@@ -41,6 +26,21 @@ const BottomTabNavigator = () => {
                                     <Image
                                         style={{width: size, height: size}}
                                         source={require('../assets/icons/people.png')}
+                                    />
+                                );
+                            },
+                            tabBarActiveTintColor: 'black'
+                        }}
+            />
+            <Tab.Screen name="TracksStackNavigator"
+                        component={TracksStackNavigator}
+                        options={{
+                            title: 'Trasy',
+                            tabBarIcon: ({size, color}) => {
+                                return (
+                                    <Image
+                                        style={{width: size, height: size}}
+                                        source={require('../assets/icons/home.png')}
                                     />
                                 );
                             },
