@@ -8,23 +8,37 @@ import {
 } from "react-native";
 import * as Location from "expo-location";
 import MapView, {Marker} from "react-native-maps";
-import {MOCKED_MARKERS} from "../../api/mocked";
-import CustomBottomDrawer from "../BottomDrawer";
-import {MarkerDetails} from "./MarkerDetails";
-import {useQuery} from "@apollo/client";
-import {GET_ROUTES} from "../../api/queries";
-import MapViewDirections from 'react-native-maps-directions';
+import MapViewDirections from "react-native-maps-directions";
+import {BottomMapNav} from "./BottomMapNav";
 
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
-const Map = () => {
+const FollowerMap = ({navigation, route}: any) => {
     const [currentLocation, setCurrentLocation]: any = useState(null);
     const [initialRegion, setInitialRegion]: any = useState(null);
-    const currentMarker: any = useRef();
     let _mapView: any = useRef<MapView>(null);
 
+
+
+    const startingPoint = route.params.propsData
+    const points = route.params.data.route.points
+    const [currentPoint, setCurrentPoint] = useState<number>(0);
+
+    const goNextPoint = () => {
+        setCurrentPoint((prev) => prev + 1);
+    }
+
+    useEffect(() => {
+        if(currentLocation)
+            _mapView.current.animateToRegion({
+                latitude: currentLocation.latitude,
+                longitude: currentLocation.longitude,
+                latitudeDelta: 0.003,
+                longitudeDelta: 0.003,
+            }, 100)
+    }, []);
 
     useEffect(() => {
         const getLocation = async () => {
@@ -40,17 +54,19 @@ const Map = () => {
             setInitialRegion({
                 latitude: location.coords.latitude,
                 longitude: location.coords.longitude,
-                latitudeDelta: 0.015,
-                longitudeDelta: 0.015,
+                latitudeDelta: 0.003,
+                longitudeDelta: 0.003,
             });
         };
 
         getLocation();
+        navigation.setOptions({tabBarStyle: { display: 'none' }});
     }, []);
 
     return (
         <View style={styles.container}>
             {initialRegion && (
+                <>
                 <MapView style={styles.map}
                          initialRegion={initialRegion}
                          ref={(current) => {
@@ -63,15 +79,35 @@ const Map = () => {
                          customMapStyle={mapStyle}
                 >
                     {currentLocation && (
-                        <Marker
-                            coordinate={{
+                        <>
+                        <Marker coordinate={{latitude: currentLocation.latitude, longitude: currentLocation.longitude}}>
+                            <Image
+                                style={{width: 20, height: 20}}
+                                source={require('../../assets/icons/current_location.png')}
+                            />
+                        </Marker>
+                        <MapViewDirections
+                            key={points[currentPoint].title}
+                            mode={'WALKING'}
+                            origin={{
                                 latitude: currentLocation.latitude,
-                                longitude: currentLocation.longitude,
+                                longitude: currentLocation.longitude
                             }}
-                            title="Your Location"
+                            destination={{
+                                latitude: points[currentPoint].lat,
+                                longitude: points[currentPoint].lng
+                            }}
+                            apikey={process.env.EXPO_PUBLIC_API_KEY!}
                         />
+                        </>
                     )}
                 </MapView>
+                <BottomMapNav nextStation='Jakas stacja'
+                              theme='Trasa historyczna'
+                              duration={7000}
+                              distanceLeft={5}
+                />
+                </>
             )}
         </View>
     );
@@ -111,4 +147,4 @@ const mapStyle =
         }
     ]
 
-export default Map;
+export default  FollowerMap;

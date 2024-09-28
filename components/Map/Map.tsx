@@ -119,7 +119,10 @@ const Map = ({navigation}: any) => {
                 </MapView>
             )}
             {isDrawerOpened && <CustomBottomDrawer onClose={closeDrawer}>
-                <MarkerDetails propsData={currentMarker.current} navigation={navigation}/>
+                <MarkerDetails propsData={currentMarker.current}
+                               navigation={navigation}
+                               closeDrawer={closeDrawer}
+                />
             </CustomBottomDrawer>}
         </View>
     );

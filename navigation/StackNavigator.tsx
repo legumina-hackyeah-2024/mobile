@@ -23,7 +23,6 @@ const TracksStackNavigator = () => {
     return (
         <Stack.Navigator screenOptions={screenOptionStyle}>
             <Stack.Screen name="Tracks" component={Home}/>
-            <Stack.Screen name="FollowerMap" component={FollowerMap}/>
         </Stack.Navigator>
     );
 }

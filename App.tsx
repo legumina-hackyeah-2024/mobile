@@ -8,6 +8,7 @@ import {createStackNavigator} from "@react-navigation/stack";
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 import BottomTabNavigator from "./navigation/TabNavigator";
 import {Login} from "./screens/Login";
+import FollowerMap from "./components/Map/FollowerMap";
 
 const Stack = createStackNavigator();
 
@@ -26,6 +27,7 @@ export default function App() {
                 <Stack.Navigator screenOptions={screenOptionStyle}>
                     <Stack.Screen name="Test" component={BottomTabNavigator}/>
                     <Stack.Screen name="LoginNavigator" component={Login} />
+                    <Stack.Screen name="FollowerMap" component={FollowerMap}/>
                 </Stack.Navigator>
             </NavigationContainer>
     </ApolloProvider>;

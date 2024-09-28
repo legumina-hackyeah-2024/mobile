@@ -43,7 +43,7 @@ export function IdleMapPathRender({path, data, loading}: any) {
                     }}
                     onTouchMove={(event) => event.preventDefault()}
     >
-        {renderPaths(data.route.points)}
+        {/*{renderPaths(data.route.points)}*/}
     </MapView>
 
 }

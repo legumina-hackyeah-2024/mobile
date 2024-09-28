@@ -7,13 +7,15 @@ import {GET_ROUTES_BY_ID} from "../../api/queries";
 
 interface MarkerDetailsProps {
     propsData: Route,
-    navigation: any
+    navigation: any,
+    closeDrawer: any
 }
 
-export function MarkerDetails({propsData, navigation}: MarkerDetailsProps) {
+export function MarkerDetails({propsData, navigation, closeDrawer}: MarkerDetailsProps) {
     const {loading, error, data}: any = useQuery(GET_ROUTES_BY_ID(propsData.id));
 
     const startNavigation = () => {
+        closeDrawer();
         navigation.navigate('FollowerMap', {propsData, data})
     }
 
