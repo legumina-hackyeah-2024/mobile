@@ -14,13 +14,13 @@ const screenOptionStyle = {
     },
     headerTintColor: "white",
     headerBackTitle: "Back",
+    headerShown: false
 };
 
 const MainStackNavigator = () => {
     return (
         <Stack.Navigator screenOptions={screenOptionStyle}>
-            <Stack.Screen name="Home" component={Home} />
-            <Stack.Screen name="About" component={About} />
+            <Stack.Screen name="Home3" component={Home} />
         </Stack.Navigator>
     );
 }
@@ -28,7 +28,7 @@ const MainStackNavigator = () => {
 const ContactStackNavigator = () => {
     return (
         <Stack.Navigator screenOptions={screenOptionStyle}>
-            <Stack.Screen name="Contact" component={Contact} />
+            <Stack.Screen name="Contact2" component={Contact} />
         </Stack.Navigator>
     );
 }
