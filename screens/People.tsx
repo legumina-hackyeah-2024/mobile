@@ -1,16 +1,22 @@
 import React from "react";
-import {Dimensions, Image, SafeAreaView, ScrollView, StyleSheet, Text, View} from "react-native";
+import {Dimensions, Image, SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {MOCKED_PEOPLE} from "../api/mocked";
+import {useNavigation} from "@react-navigation/native";
+import {Person} from "../api/types";
 
-export function People() {
+export function People({navigation}: any) {
 
     const height = Dimensions.get('window').height;
     const width = Dimensions.get('window').width;
 
+    const navigateTo = (person: Person) => {
+        navigation.navigate('PersonDetails', {person: person})
+    }
+
     return <SafeAreaView>
         <ScrollView style={styles.container}>
             {MOCKED_PEOPLE.map(person => {
-                return <View style={styles.card} key={person.id}>
+                return <TouchableOpacity style={styles.card} key={person.id} onPress={() => navigateTo(person)}>
                     <View style={styles.imageTile}>
                         <Image
                             style={{...styles.images, width: width * 0.9, height: height * 0.2}}
@@ -19,7 +25,7 @@ export function People() {
                     </View>
                     <Text style={styles.cardTitle}>{person.name}</Text>
                     <Text style={styles.cardDescription}>{person.description}</Text>
-                </View>
+                </TouchableOpacity>
             })}
         </ScrollView>
     </SafeAreaView>

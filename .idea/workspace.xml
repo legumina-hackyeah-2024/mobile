@@ -4,14 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="30b3ca93-8500-4d59-9c29-ea3008e442e8" name="Changes" comment="working lol">
+    <list default="true" id="30b3ca93-8500-4d59-9c29-ea3008e442e8" name="Changes" comment="postacie in progress">
       <change afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/navigation.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/navigation.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/screens/PersonDetails.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/mocked.ts" beforeDir="false" afterPath="$PROJECT_DIR$/api/mocked.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/api/types.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/navigation/StackNavigator.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/navigation/StackNavigator.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/navigation/TabNavigator.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/navigation/TabNavigator.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/screens/People.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/screens/People.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -117,7 +114,7 @@
       <workItem from="1727300006740" duration="26000" />
       <workItem from="1727300100889" duration="1360000" />
       <workItem from="1727330511076" duration="11000" />
-      <workItem from="1727521824316" duration="19907000" />
+      <workItem from="1727521824316" duration="20576000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -199,7 +196,15 @@
       <option name="project" value="LOCAL" />
       <updated>1727540182209</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="postacie in progress">
+      <option name="closed" value="true" />
+      <created>1727542081015</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1727542081015</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -223,6 +228,7 @@
     <MESSAGE value="more work" />
     <MESSAGE value="apolloe" />
     <MESSAGE value="working lol" />
-    <option name="LAST_COMMIT_MESSAGE" value="working lol" />
+    <MESSAGE value="postacie in progress" />
+    <option name="LAST_COMMIT_MESSAGE" value="postacie in progress" />
   </component>
 </project>

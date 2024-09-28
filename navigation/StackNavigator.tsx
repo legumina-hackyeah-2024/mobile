@@ -5,6 +5,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import Home from "../screens/Home";
 import {People} from "../screens/People";
 import {Profile} from "../screens/Profile";
+import {PersonDetails} from "../screens/PersonDetails";
 
 const Stack = createStackNavigator();
 
@@ -33,6 +34,10 @@ const PeopleStackNavigator = () => {
             title: 'Postacie',
         }}>
             <Stack.Screen name="People" component={People} />
+            <Stack.Screen name="PersonDetails"
+                          component={PersonDetails}
+                          options={{headerBackTitle: '', headerTitle: '', headerTintColor: 'black'}}
+            />
         </Stack.Navigator>
     );
 }
