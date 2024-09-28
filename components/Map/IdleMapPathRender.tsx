@@ -5,13 +5,11 @@ import React from "react";
 import MapView from "react-native-maps";
 import {Dimensions, StyleSheet} from "react-native";
 
-export function IdleMapPathRender({path}: any) {
-    const {loading, error, data}: any = useQuery(GET_ROUTES_BY_ID(path.id));
+export function IdleMapPathRender({path, data, loading}: any) {
 
     if(loading)
         return <></>
 
-    // console.log(data.route.points[0])
 
     const renderPaths = (points: any) => {
         const ret = []

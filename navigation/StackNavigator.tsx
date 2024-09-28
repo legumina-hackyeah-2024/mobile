@@ -6,6 +6,7 @@ import {People} from "../screens/People";
 import {Profile} from "../screens/Profile/Profile";
 import {PersonDetails} from "../screens/PersonDetails";
 import {Settings} from "../screens/Settings";
+import FollowerMap from "../components/Map/FollowerMap";
 
 const Stack = createStackNavigator();
 
@@ -22,6 +23,7 @@ const TracksStackNavigator = () => {
     return (
         <Stack.Navigator screenOptions={screenOptionStyle}>
             <Stack.Screen name="Tracks" component={Home}/>
+            <Stack.Screen name="FollowerMap" component={FollowerMap}/>
         </Stack.Navigator>
     );
 }

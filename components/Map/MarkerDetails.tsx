@@ -2,23 +2,35 @@ import React from "react";
 import {Button, Dimensions, SafeAreaView, ScrollView, StyleSheet, Text, View} from "react-native";
 import {Route} from "../../api/types";
 import {IdleMapPathRender} from "./IdleMapPathRender";
+import {useQuery} from "@apollo/client";
+import {GET_ROUTES_BY_ID} from "../../api/queries";
 
 interface MarkerDetailsProps {
-    data: Route
+    propsData: Route,
+    navigation: any
 }
 
-export function MarkerDetails({data}: MarkerDetailsProps) {
+export function MarkerDetails({propsData, navigation}: MarkerDetailsProps) {
+    const {loading, error, data}: any = useQuery(GET_ROUTES_BY_ID(propsData.id));
+
+    const startNavigation = () => {
+        navigation.navigate('FollowerMap', {propsData, data})
+    }
+
+    if(loading)
+        return <></>
+
     return <View style={styles.container}>
-        <Text style={styles.title}>{data.title}</Text>
+        <Text style={styles.title}>{propsData.title}</Text>
         <View style={styles.detailsContainer}>
-            <Text>Długość: {data.distance} km</Text>
-            <Text>Trudność: {[...Array(data.difficulty)].map(() => '*')}</Text>
+            <Text>Długość: {propsData.distance} km</Text>
+            <Text>Trudność: {[...Array(propsData.difficulty)].map(() => '*')}</Text>
         </View>
         <SafeAreaView>
             <ScrollView style={styles.textArea}>
-                <Text numberOfLines={10} ellipsizeMode='head'>{data.description}</Text>
+                <Text numberOfLines={10} ellipsizeMode='head'>{propsData.description}</Text>
                 <View>
-                    <IdleMapPathRender path={data}/>
+                    <IdleMapPathRender path={propsData} loading={loading} data={data}/>
                 </View>
             </ScrollView>
         </SafeAreaView>
@@ -27,7 +39,7 @@ export function MarkerDetails({data}: MarkerDetailsProps) {
             <Button color='black' title='Czytaj więcej'/>
         </View>
         <View style={styles.buttonContainer}>
-            <Button color='white' title='Rozpocznij trasę'/>
+            <Button color='white' title='Rozpocznij trasę' onPress={()=> startNavigation()}/>
         </View>
     </View>
 }

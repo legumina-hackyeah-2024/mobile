@@ -19,36 +19,11 @@ import MapViewDirections from 'react-native-maps-directions';
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
-const Map = ({navigation}: any) => {
-    const {loading, error, data}: any = useQuery(GET_ROUTES);
+const Map = () => {
     const [currentLocation, setCurrentLocation]: any = useState(null);
     const [initialRegion, setInitialRegion]: any = useState(null);
-    const [isDrawerOpened, setDrawerOpened]: any = useState(false);
     const currentMarker: any = useRef();
     let _mapView: any = useRef<MapView>(null);
-
-    useEffect(() => {
-        if(currentMarker.current && _mapView.current) {
-            _mapView.current.animateToRegion({
-                    longitude: currentMarker.current.lng,
-                    latitude: currentMarker.current.lat - 0.003,
-                    latitudeDelta: 0.010,
-                    longitudeDelta: 0.010,
-                },
-                500)
-        }
-
-    }, [isDrawerOpened])
-
-    const openDrawer = (marker: any) => {
-        currentMarker.current = marker;
-
-        setDrawerOpened(true);
-    };
-
-    const closeDrawer = () => {
-        setDrawerOpened(false)
-    };
 
 
     useEffect(() => {
@@ -96,31 +71,8 @@ const Map = ({navigation}: any) => {
                             title="Your Location"
                         />
                     )}
-
-                    {!loading && (
-                        data.routes.map((marker: any) => {
-                            return <Marker
-                                key={marker.title}
-                                coordinate={{
-                                    latitude: marker.lat,
-                                    longitude: marker.lng,
-                                }}
-
-                                title={marker.title}
-                                onPress={() => openDrawer(marker)}
-
-                            >
-                                <Image
-                                    style={{width: 30, height: 30}}
-                                    source={require('../../assets/icons/map_pin.png')}
-                                />
-                            </Marker>
-                        }))}
                 </MapView>
             )}
-            {isDrawerOpened && <CustomBottomDrawer onClose={closeDrawer}>
-                <MarkerDetails propsData={currentMarker.current} navigation={navigation}/>
-            </CustomBottomDrawer>}
         </View>
     );
 };
