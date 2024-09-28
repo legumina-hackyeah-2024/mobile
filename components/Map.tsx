@@ -2,21 +2,19 @@ import React, {useEffect, useState} from "react";
 import {
     StyleSheet,
     View,
-    TouchableOpacity,
     Text,
     Dimensions,
     Image,
 } from "react-native";
 import * as Location from "expo-location";
 import MapView, {Marker} from "react-native-maps";
-import {useQuery} from "@apollo/client";
-import {GET_DOGS} from "../api/queries";
+import {MOCKED_MARKERS} from "../api/mocked";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
 const Map = () => {
-    const { loading, error, data } = useQuery(GET_DOGS);
+    // const { loading, error, data } = useQuery(GET_DOGS);
     const [currentLocation, setCurrentLocation]: any = useState(null);
     const [initialRegion, setInitialRegion]: any = useState(null);
 
@@ -67,6 +65,23 @@ const Map = () => {
                             title="Your Location"
                         />
                     )}
+
+                    {currentLocation && (
+                        MOCKED_MARKERS.map(marker => {
+                            return <Marker
+                                key={marker.title}
+                                coordinate={{
+                                    latitude: marker.lat,
+                                    longitude: marker.lon,
+                                }}
+                                title={marker.title}
+                            >
+                                <Image
+                                    style={{width: 30, height: 30}}
+                                    source={require('../assets/icons/map_pin.png')}
+                                />
+                            </Marker>
+                        }))}
                 </MapView>
             )}
         </View>
@@ -103,33 +118,6 @@ const mapStyle =
                 {
                     "visibility": "off"
                 }
-            ]
-        },
-        {
-            "featureType": "poi", // Points of interest
-            "elementType": "labels",
-            "stylers": [
-                {"visibility": "off"} // Hide all POI labels
-            ]
-        },
-        {
-            "featureType": "poi.business",
-            "stylers": [
-                {"visibility": "off"} // Hide business POIs
-            ]
-        },
-        {
-            "featureType": "poi.park",
-            "elementType": "labels.text",
-            "stylers": [
-                {"visibility": "off"} // Hide park labels
-            ]
-        },
-        {
-            "featureType": "administrative", // Hide administrative labels
-            "elementType": "labels",
-            "stylers": [
-                {"visibility": "off"}
             ]
         }
     ]

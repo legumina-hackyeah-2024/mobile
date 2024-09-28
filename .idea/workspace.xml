@@ -4,31 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="30b3ca93-8500-4d59-9c29-ea3008e442e8" name="Changes" comment="base navigation UI design">
-      <change afterPath="$PROJECT_DIR$/app.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/adaptive-icon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/favicon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/icon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/icons/home.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/icons/map_pin.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/icons/people.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/icons/profile.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/splash.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/babel.config.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/Header.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/screens/People.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/screens/Profile.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
+    <list default="true" id="30b3ca93-8500-4d59-9c29-ea3008e442e8" name="Changes" comment="reconfigured navigation">
+      <change afterPath="$PROJECT_DIR$/api/mocked.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/types.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/Header.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/Map.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/Map.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/navigation/DrawerNavigator.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/navigation/StackNavigator.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/navigation/StackNavigator.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/navigation/TabNavigator.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/navigation/TabNavigator.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/screens/About.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/screens/Contact.tsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/screens/Home.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/screens/Home.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -85,6 +66,9 @@
       <recent name="$PROJECT_DIR$/screens" />
       <recent name="$PROJECT_DIR$/api" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/api" />
+    </key>
   </component>
   <component name="RunManager" selected="React Native.iOS">
     <configuration name="Android" type="ReactNative" factoryName="React Native">
@@ -131,7 +115,7 @@
       <workItem from="1727300006740" duration="26000" />
       <workItem from="1727300100889" duration="1360000" />
       <workItem from="1727330511076" duration="11000" />
-      <workItem from="1727521824316" duration="6784000" />
+      <workItem from="1727521824316" duration="8880000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -149,7 +133,15 @@
       <option name="project" value="LOCAL" />
       <updated>1727525728596</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="reconfigured navigation">
+      <option name="closed" value="true" />
+      <created>1727528634219</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1727528634219</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -165,6 +157,7 @@
     <MESSAGE value="init" />
     <MESSAGE value="navigation + grapql initializaion" />
     <MESSAGE value="base navigation UI design" />
-    <option name="LAST_COMMIT_MESSAGE" value="base navigation UI design" />
+    <MESSAGE value="reconfigured navigation" />
+    <option name="LAST_COMMIT_MESSAGE" value="reconfigured navigation" />
   </component>
 </project>
