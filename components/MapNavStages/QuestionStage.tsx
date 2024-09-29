@@ -1,17 +1,21 @@
 import React from "react";
-import { Button, Dimensions, StyleSheet, Text, View, ActivityIndicator } from "react-native";
-import { useMutation } from "@apollo/client";
+import {Button, Dimensions, StyleSheet, Text, View, ActivityIndicator} from "react-native";
+import {useMutation} from "@apollo/client";
 import gql from "graphql-tag";
 import {SUBMIT_ANSWER} from "../../api/queries";
 
-export function QuestionStage({ goNextStage, currentUserMe }: any) {
+export function QuestionStage({goNextStage, currentUserMe}: any) {
+
+    if (!currentUserMe)
+        return <></>
+
     const pointIndx = currentUserMe.userMe.progressOfRoute.currentPointIdx;
     const routeId = currentUserMe.userMe.progressOfRoute.routeId;
     const question = currentUserMe.userMe.progressOfRoute.currentPoint.question;
     const answers = currentUserMe.userMe.progressOfRoute.currentPoint.answers;
 
     const [badAnswers, setBadAnswers] = React.useState<number[]>([]);
-    const [submitAnswer, { data, loading, error }] = useMutation(SUBMIT_ANSWER, {
+    const [submitAnswer] = useMutation(SUBMIT_ANSWER, {
         context: {
             headers: {
                 Authorization: `Bearer ${process.env.EXPO_PUBLIC_JWT}`,
@@ -25,7 +29,7 @@ export function QuestionStage({ goNextStage, currentUserMe }: any) {
 
     const handleAnswerClick = (answerIndex: number) => {
         submitAnswer({
-            variables: { routeId: routeId, pointIdx: pointIndx, answerIdx: answerIndex },
+            variables: {routeId: routeId, pointIdx: pointIndx, answerIdx: answerIndex},
         })
             .then((response) => {
                 console.log("Answer submitted successfully:", response.data);
@@ -45,10 +49,10 @@ export function QuestionStage({ goNextStage, currentUserMe }: any) {
             {answers.map((answer: string, index: number) => {
                 return (
                     <View
-                        style={{ ...styles.buttonStyle, opacity: badAnswers.includes(index) ? 0.5 : 1 }}
+                        style={{...styles.buttonStyle, opacity: badAnswers.includes(index) ? 0.5 : 1}}
                         key={index}
                     >
-                        <Button color="#295046" title={answer} onPress={() => handleAnswerClick(index)} />
+                        <Button color="#295046" title={answer} onPress={() => handleAnswerClick(index)}/>
                     </View>
                 );
             })}

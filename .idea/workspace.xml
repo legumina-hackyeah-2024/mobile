@@ -5,17 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="30b3ca93-8500-4d59-9c29-ea3008e442e8" name="Changes" comment="more backend integration">
-      <change afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.env.example" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/images/last_person.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/images/you_did_it.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/MapNavStages/QuestionComplete.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/screens/FinishScreen.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/queries.ts" beforeDir="false" afterPath="$PROJECT_DIR$/api/queries.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/api/types.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/Map/BottomMapNav.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/Map/BottomMapNav.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/Map/FollowerMap.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/Map/FollowerMap.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Map/Map.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/Map/Map.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Map/MarkerDetails.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/Map/MarkerDetails.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/MapNavStages/QuestionStage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/MapNavStages/QuestionStage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/screens/Login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/screens/Login.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,7 +60,7 @@
     &quot;React Native.iOS.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/mateusz.jamroz/dev/react-native-pg/navigation/api&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/mateusz.jamroz/dev/react-native-pg/navigation/components/MapNavStages&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -75,9 +74,9 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/components/MapNavStages" />
       <recent name="$PROJECT_DIR$/api" />
       <recent name="$PROJECT_DIR$/assets/icons" />
-      <recent name="$PROJECT_DIR$/components/MapNavStages" />
       <recent name="$PROJECT_DIR$/assets/fonts" />
       <recent name="$PROJECT_DIR$/components/Map" />
     </key>
@@ -133,7 +132,7 @@
       <workItem from="1727300100889" duration="1360000" />
       <workItem from="1727330511076" duration="11000" />
       <workItem from="1727521824316" duration="45686000" />
-      <workItem from="1727569963089" duration="4373000" />
+      <workItem from="1727569963089" duration="6568000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -279,7 +278,15 @@
       <option name="project" value="LOCAL" />
       <updated>1727568296731</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="more backend integration">
+      <option name="closed" value="true" />
+      <created>1727574520560</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1727574520560</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -317,7 +324,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/components/Map/BottomMapNav.tsx</url>
-          <line>39</line>
+          <line>43</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>

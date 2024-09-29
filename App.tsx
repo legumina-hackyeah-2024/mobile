@@ -12,6 +12,7 @@ import FollowerMap from "./components/Map/FollowerMap";
 import {useFonts} from "expo-font";
 import {CaveatBrush_400Regular} from "@expo-google-fonts/caveat-brush";
 import {SofiaSans_300Light} from "@expo-google-fonts/sofia-sans";
+import {FinishScreen} from "./screens/FinishScreen";
 
 
 const Stack = createStackNavigator();
@@ -42,6 +43,7 @@ export default function App() {
                     <Stack.Screen name="Test" component={BottomTabNavigator}/>
                     <Stack.Screen name="LoginNavigator" component={Login} />
                     <Stack.Screen name="FollowerMap" component={FollowerMap}/>
+                    <Stack.Screen name="FinishScreen" component={FinishScreen}/>
                 </Stack.Navigator>
             </NavigationContainer>
     </ApolloProvider>;
