@@ -1,24 +1,33 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {Button, Dimensions, StyleSheet, Text, View, ActivityIndicator} from "react-native";
-import {useMutation} from "@apollo/client";
+import {useMutation, useQuery} from "@apollo/client";
 import gql from "graphql-tag";
-import {SUBMIT_ANSWER} from "../../api/queries";
+import {GET_USER_ME, SUBMIT_ANSWER} from "../../api/queries";
+import {QuestionComplete} from "./QuestionComplete";
 
 export function QuestionStage({goNextStage, currentUserMe}: any) {
-
     if (!currentUserMe)
         return <></>
 
-    const pointIdx = currentUserMe.userMe.progressOfRoute.currentPointIdx;
     const routeId = currentUserMe.userMe.progressOfRoute.routeId;
-    const question = currentUserMe.userMe.progressOfRoute.currentPoint.question;
-    const answers = currentUserMe.userMe.progressOfRoute.currentPoint.answers;
+    const {data, loading, error} = useQuery(GET_USER_ME(routeId), {
+        variables: {id: routeId},
+        context: {
+            headers: {
+                Authorization: `Bearer ${process.env.EXPO_PUBLIC_JWT}`,
+            },
+        },
+    });
 
-    console.log(pointIdx)
-    console.log(routeId)
-    console.log(question)
+    useEffect(() => {
+        if (data) {
+            console.log(data)
+            console.log(data.userMe.progressOfRoute.currentPointIdx)
+        }
+    }, [data]);
 
     const [badAnswers, setBadAnswers] = React.useState<number[]>([]);
+    const [response, setResponse] = React.useState<any>(null);
     const [submitAnswer] = useMutation(SUBMIT_ANSWER, {
         context: {
             headers: {
@@ -33,26 +42,33 @@ export function QuestionStage({goNextStage, currentUserMe}: any) {
 
     const handleAnswerClick = (answerIndex: number) => {
         submitAnswer({
-            variables: {routeId: routeId, pointIdx: pointIdx, answerIdx: answerIndex},
+            variables: {
+                routeId: routeId,
+                pointIdx: data.userMe.progressOfRoute.currentPointIdx,
+                answerIdx: answerIndex
+            },
         })
             .then((response) => {
-                console.log("Answer submitted successfully:", response.data);
-                goNextStage();
+                setResponse(response.data.answer.progressOfRoute.currentPointIdx);
             })
             .catch((error) => {
-                console.error("Error submitting answer:", JSON.stringify(error));
-                if (error.extensions.code === "ANSWER_IS_NOT_CORRECT") {
-                    addBadAnswer(answerIndex);
-                }
-                // goNextStage();
+                addBadAnswer(answerIndex);
             });
     };
+
+    if (loading) return <></>
+
+    if(response) {
+        return <QuestionComplete goNextStage={() => {
+            goNextStage(response);
+        }}/>
+    }
 
     return (
         <View style={styles.container}>
             <Text style={styles.formattedText}>Your Question</Text>
-            <Text>{question}</Text>
-            {answers.map((answer: string, index: number) => {
+            <Text>{data.userMe.progressOfRoute.currentPoint.question}</Text>
+            {data.userMe.progressOfRoute.currentPoint.answers.map((answer: string, index: number) => {
                 return (
                     <View
                         style={{...styles.buttonStyle, opacity: badAnswers.includes(index) ? 0.5 : 1}}

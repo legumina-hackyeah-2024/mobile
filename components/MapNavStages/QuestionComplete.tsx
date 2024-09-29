@@ -1,12 +1,12 @@
 import React from "react";
 import {Button, Dimensions, StyleSheet, Text, View} from "react-native";
 
-export function QuestionComplete({goNextStage, currentUserMe}: any) {
+export function QuestionComplete({goNextStage}: any) {
     return <View style={styles.container}>
         <Text style={styles.formattedText}>Zadanie Wykonane</Text>
         <Text style={{fontFamily: 'Sofia Sans'}}>Lorem ipsum dolor sit amet consectetur. Tristique pellentesque tellus tellus auctor velit ornare urna eget tortor. Sollicitudin quisque tristique viverra tortor. Sollicitudin quisque. tristique viverra tortor. Sollicitudin quisque.</Text>
         <View style={styles.buttonStyle}>
-            <Button color='white' title='Ruszamy dalej' onPress={() => goNextStage(currentUserMe.userMe.progressOfRoute.currentPointIdx)}/>
+            <Button color='white' title='Ruszamy dalej' onPress={() => goNextStage()}/>
         </View>
     </View>
 

@@ -11,6 +11,7 @@ const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
 const FollowerMap = ({ navigation, route }: any) => {
+
     const [currentLocation, setCurrentLocation]: any = useState(null);
     const [initialRegion, setInitialRegion]: any = useState(null);
     const [elapsedTime, setElapsedTime] = useState<number>(0);
@@ -33,14 +34,23 @@ const FollowerMap = ({ navigation, route }: any) => {
     });
 
     useEffect(() => {
-        setCurrentPoint(data?.userMe.progressOfRoute.currentPointIdx || 0);
-        if(data && data.userMe.progressOfRoute.status === "completed") {
-            console.log("WORKING")
+        if(!data || loading) return;
+
+        if(data && data.userMe.progressOfRoute.status === "Completed") {
             navigation.navigate('FinishScreen');
         }
+            // setCurrentPoint(data.userMe.progressOfRoute.currentPointIdx);
+
     }, [data]);
 
     useEffect(() => {
+        if(currentPoint === points.length) {
+            navigation.navigate('FinishScreen');
+        }
+
+        if(stage === 'question') {
+            setStage('task-complete');
+        }
 
     }, [currentPoint])
 
@@ -57,8 +67,12 @@ const FollowerMap = ({ navigation, route }: any) => {
         setStage('question');
     };
 
-    const goToTaskComplete = () => {
-        setStage('task-complete');
+    const goToTaskComplete = (nextPoint: number) => {
+        if(nextPoint === points.length) {
+            navigation.navigate('FinishScreen');
+        } else {
+            setCurrentPoint(nextPoint);
+        }
     };
 
     const calculateTotalDistanceLeft = (currentLocation: any, points: any[], currentPoint: number) => {
@@ -179,7 +193,7 @@ const FollowerMap = ({ navigation, route }: any) => {
                         showsBuildings={false}
                         customMapStyle={mapStyle}
                     >
-                        {currentLocation && (
+                        {(currentLocation && points[currentPoint]) && (
                             <>
                                 {/* Dynamic current location marker */}
                                 <Marker
@@ -205,6 +219,7 @@ const FollowerMap = ({ navigation, route }: any) => {
                                         source={require("../../assets/icons/map_destination_ping.png")}
                                     />
                                 </Marker>
+                                {points[currentPoint] && (
                                 <MapViewDirections
                                     key={points[currentPoint].title}
                                     mode={"WALKING"}
@@ -219,11 +234,11 @@ const FollowerMap = ({ navigation, route }: any) => {
                                         longitude: points[currentPoint].lng,
                                     }}
                                     apikey={process.env.EXPO_PUBLIC_API_KEY!}
-                                />
+                                />)}
                             </>
                         )}
                     </MapView>
-                    <Button onPress={() => goToExercise()} title={'SKIP_BEING_CLOSE_LOGIC'}/>
+                    <Button onPress={() => setStage('close')} title={'SKIP_BEING_CLOSE_LOGIC'}/>
                     <BottomMapNav
                         nextStation={points[currentPoint].title}
                         currentUserMe={data}
@@ -231,7 +246,7 @@ const FollowerMap = ({ navigation, route }: any) => {
                         description={points[currentPoint].description}
                         duration={elapsedTime}
                         stage={stage}
-                        goNextStage={goNextPoint}
+                        goNextStage={goToTaskComplete}
                         goToExercise={goToExercise}
                         goToTaskComplete={goToTaskComplete}
                         distanceLeft={Math.round(totalDistanceLeft * 100) / 100}

@@ -8,7 +8,6 @@ export function Login() {
     const login = async () => {
         const result = await WebBrowser.openAuthSessionAsync('https://treasures-of-poland.up.railway.app/google?redirect_uri=' + 'exp://172.20.10.3:8081')
             .then(res => console.log(res));
-        console.log(result)
     }
 
     return <View style={styles.container}>
