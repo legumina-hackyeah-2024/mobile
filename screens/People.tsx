@@ -3,8 +3,11 @@ import {Dimensions, Image, SafeAreaView, ScrollView, StyleSheet, Text, Touchable
 import {MOCKED_PEOPLE} from "../api/mocked";
 import {useNavigation} from "@react-navigation/native";
 import {Person} from "../api/types";
+import { useQuery } from "@apollo/client";
+import { GET_ROUTES, HEROES } from "../api/queries";
 
 export function People({navigation}: any) {
+    const {loading, error, data}: any = useQuery(HEROES);
 
     const height = Dimensions.get('window').height;
     const width = Dimensions.get('window').width;
@@ -15,17 +18,22 @@ export function People({navigation}: any) {
 
     return <SafeAreaView>
         <ScrollView style={styles.container}>
-            {MOCKED_PEOPLE.map(person => {
-                return <TouchableOpacity style={styles.card} key={person.id} onPress={() => navigateTo(person)}>
-                    <View style={styles.imageTile}>
-                        <Image
-                            style={{...styles.images, width: width * 0.9, height: height * 0.2}}
-                            source={require('../assets/images/person_mockup.png')}
-                        />
-                    </View>
-                    <Text style={styles.cardTitle}>{person.name}</Text>
-                    <Text style={styles.cardDescription}>{person.description}</Text>
-                </TouchableOpacity>
+            {!loading && data.heros.map((person: any) => {
+                return <>
+                    <TouchableOpacity style={styles.card} key={person.id} onPress={() => navigateTo(person)}>
+                        <View style={styles.imageTile}>
+                            <Image
+                                style={{...styles.images}}
+                                source={{uri: person.picture}}
+                            />
+                        </View>
+                        <View style={styles.texts}>
+                            <Text style={styles.cardTitle}>{person.name}</Text>
+                            <Text style={styles.cardDescription} numberOfLines={4}>{person.description}</Text>
+                        </View>
+                    </TouchableOpacity>
+                    <View style={styles.divider}/>
+                </>
             })}
         </ScrollView>
     </SafeAreaView>
@@ -40,21 +48,37 @@ const styles = StyleSheet.create({
     },
     card: {
         display: "flex",
+        flexDirection: "row",
         justifyContent: "center",
-        marginBottom: 40,
+        marginBottom: 20,
     },
     images: {
-        borderRadius: 10,
-        borderWidth: 2,
-        borderColor: 'rgba(12,12,12,0.27)'
+        width: 128,
+        height: 128,
+        borderRadius: 30,
+        resizeMode: 'contain'
     },
     imageTile: {
-        display: "flex",
-        alignItems: 'center',
+        width: 128,
+        height: 128,
+    },
+    texts: {
+        flex: 2
     },
     cardTitle: {
-        textAlign: "left",
-        fontSize: 20,
+        fontSize: 32,
+        fontFamily: 'CaveatBrush_400Regular',
+        color: '#295046'
     },
-    cardDescription: {}
+    cardDescription: {
+        fontSize: 14,
+        fontFamily: 'Sofia Sans',
+        lineHeight: 20,
+        color: '#19191B'
+    },
+    divider: {
+        height: 2, 
+        backgroundColor: '#E6E4DC',
+        marginBottom: 20
+    }
 })

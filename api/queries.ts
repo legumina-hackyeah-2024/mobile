@@ -1,4 +1,4 @@
-import {gql, useQuery} from '@apollo/client';
+import { gql, useQuery } from '@apollo/client';
 
 const GET_ROUTES = gql`
   query Routes {
@@ -27,7 +27,7 @@ const GET_ROUTES = gql`
 `;
 
 const GET_ROUTES_BY_ID = (id: string) => {
-    return gql`
+  return gql`
   query Routes {
   route(input: { id: "${id}" }) {
         title
@@ -67,7 +67,7 @@ const SUBMIT_ANSWER = gql`
 `;
 
 const GET_USER_ME = (routeId: string) => {
-    return gql`
+  return gql`
 query UserMe {
     userMe {
         badges {
@@ -99,6 +99,17 @@ query UserMe {
 `;
 }
 
+const HEROES = gql`
+  query Heros {
+    heros {
+      id
+      name
+      description
+      picture
+      excerpt
+    }
+  }
+`;
 
 
-export {GET_ROUTES, GET_ROUTES_BY_ID, SUBMIT_ANSWER, GET_USER_ME}
+export { GET_ROUTES, GET_ROUTES_BY_ID, SUBMIT_ANSWER, GET_USER_ME, HEROES }

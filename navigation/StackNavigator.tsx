@@ -14,7 +14,8 @@ const screenOptionStyle = {
     headerStyle: {
         elevation: 0,
         shadowOpacity: 0,
-        height: 70
+        height: 70,
+        fontFamily: 'CaveatBrush_400Regular',
     },
     headerShown: false,
 };
@@ -33,7 +34,7 @@ const PeopleStackNavigator = () => {
             ...screenOptionStyle,
             headerTitleAlign: 'left',
             headerShown: true,
-            title: 'Postacie',
+            title: 'Kronika',
         }}>
             <Stack.Screen name="People" component={People}/>
             <Stack.Screen name="PersonDetails"

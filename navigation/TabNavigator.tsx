@@ -35,7 +35,7 @@ const BottomTabNavigator = () => {
             <Tab.Screen name="PeopleStackNavigator"
                         component={PeopleStackNavigator}
                         options={{
-                            title: 'Postacie',
+                            title: 'Kronika',
                             tabBarIcon: ({size, color}) => {
                                 return (
                                     <Image
