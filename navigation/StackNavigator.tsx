@@ -46,10 +46,10 @@ const PeopleStackNavigator = () => {
             <Stack.Screen name="PersonDetails"
                           component={PersonDetails}
                           options={{
-                            headerBackTitle: '', 
-                            headerTitle: '', 
+                            headerBackTitleVisible: false, 
+                            headerTitle: () => null, 
                             headerTintColor: 'black',
-                            headerBackImage: () => <Image source={require('../assets/icons/back-arrow.png')} style={{width: 24, height: 24, marginLeft: 10}}/>
+                            headerBackImage: () => <Image source={require('../assets/icons/back-arrow.png')} style={{width: 24, height: 24, marginLeft: 20}}/>
                         }}
             />
         </Stack.Navigator>
