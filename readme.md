@@ -66,3 +66,18 @@ takes advantage of real time data rendering.
 2. Use the Expo Go app on your mobile device to scan the QR code and run the app.
 
 ### Detailed Overview
+![Another Screen Path](.readme.assets/another-screen-path.png "Another Screen Path")
+![Finished Screen](.readme.assets/finished.png "Finished Screen")
+![Home Screen](.readme.assets/homeScreen.png "Home Screen")
+![Kronika Screen](.readme.assets/kronika.png "Kronika Screen")
+![Login Mockup](.readme.assets/login-mockup.png "Login Mockup")
+![Project Logo](.readme.assets/logo.png "Project Logo")
+![Msciwko Screen](.readme.assets/msciwko.png "Msciwko Screen")
+![Place Arrived](.readme.assets/place-arrived.png "Place Arrived")
+![Question Screen](.readme.assets/question.png "Question Screen")
+![Route Start](.readme.assets/route-start.png "Route Start")
+![Route Start 2](.readme.assets/route-start-2.png "Route Start 2")
+![Routing Init](.readme.assets/routing-init.png "Routing Init")
+![Screen Image](.readme.assets/screen-image.png "Screen Image")
+![Task Done](.readme.assets/task-done.png "Task Done")
+![Wrocko Screen](.readme.assets/wrocko.png "Wrocko Screen")
