@@ -1,30 +1,25 @@
 import React from "react";
-import {Button, StyleSheet, Text, View} from "react-native";
+import {Button, Image, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import * as WebBrowser from 'expo-web-browser';
 
 
 export function Login() {
 
     const login = async () => {
-        const result = await WebBrowser.openAuthSessionAsync('https://treasures-of-poland.up.railway.app/google');
-        // console.log(result)
+        const result = await WebBrowser.openAuthSessionAsync('https://treasures-of-poland.up.railway.app/google?redirect_uri=' + 'exp://172.20.10.3:8081')
+            .then(res => console.log(res));
+        console.log(result)
     }
 
     return <View style={styles.container}>
-        <Text style={styles.text}>Skarby Polski</Text>
-        <View style={styles.googleLoginButton}>
-            <Button
-                title={"Zaloguj się kontem google"}
-                onPress={login}
-                color='white'
-            />
-        </View>
+        <Text style={styles.text}>Legendarium</Text>
         <View style={styles.line}/>
-        <View>
-            <Button color='black' title={"Zaloguj sie mailem"}/>
-        </View>
-        <View>
-            <Button color='black' title={"Nie masz konta? Zarejestruj sie"}/>
+        <TouchableOpacity style={styles.googleLoginButton} onPress={login}>
+            <Image source={require('../assets/icons/googleIcon.png')} style={{width: 25, height: 25}}/>
+            <Text style={{fontSize: 20, fontWeight:"900",fontFamily: 'Sofia Sans', color: 'white'}}>Zaloguj sie kontem Google</Text>
+        </TouchableOpacity>
+        <View style={{height: 50, marginHorizontal: 20,borderColor: '#295046', borderWidth: 1, borderRadius: 10, marginTop: 17, display: "flex", justifyContent: 'center'}}>
+            <Button color='#295046' title={"Zaloguj się mailem"}/>
         </View>
     </View>
 }
@@ -34,22 +29,29 @@ const styles = StyleSheet.create({
         paddingTop: 90
     },
     text: {
-        fontSize: 40,
+        fontSize: 60,
         textAlign: 'center',
-        marginBottom: 280
+        marginBottom: 40,
+        fontFamily: 'CaveatBrush_400Regular',
+        color: '#295046'
     },
     googleLoginButton: {
-        backgroundColor: 'black',
-        color: 'white',
         display: 'flex',
-        marginLeft: 40,
-        marginRight: 40,
-        borderRadius: 15
+        flexDirection: 'row',
+        backgroundColor: '#295046',
+        justifyContent: "center",
+        gap: 20,
+        alignItems: "center",
+        marginHorizontal: 20,
+        height: 50,
+        borderRadius: 10,
     },
     line: {
         backgroundColor: 'grey',
         opacity: 0.3,
         height: 1,
-        marginTop: 40
+        marginTop: 40,
+        marginBottom: 200,
+        marginHorizontal: 20,
     }
 })

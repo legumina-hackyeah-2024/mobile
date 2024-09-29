@@ -5,16 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="30b3ca93-8500-4d59-9c29-ea3008e442e8" name="Changes" comment="more backend integration">
-      <change afterPath="$PROJECT_DIR$/.env.example" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/images/last_person.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/images/you_did_it.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/MapNavStages/QuestionComplete.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/screens/FinishScreen.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/icons/googleIcon.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Map/BottomMapNav.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/Map/BottomMapNav.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Map/FollowerMap.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/Map/FollowerMap.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/MapNavStages/QuestionStage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/MapNavStages/QuestionStage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/screens/Login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/screens/Login.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -132,7 +128,7 @@
       <workItem from="1727300100889" duration="1360000" />
       <workItem from="1727330511076" duration="11000" />
       <workItem from="1727521824316" duration="45686000" />
-      <workItem from="1727569963089" duration="6568000" />
+      <workItem from="1727569963089" duration="8718000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -286,7 +282,15 @@
       <option name="project" value="LOCAL" />
       <updated>1727574520560</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="more backend integration">
+      <option name="closed" value="true" />
+      <created>1727576581020</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1727576581020</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -295,6 +299,17 @@
       <list>
         <option value="$PROJECT_DIR$/metro.config.js" />
       </list>
+    </option>
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
     </option>
   </component>
   <component name="VcsManagerConfiguration">
