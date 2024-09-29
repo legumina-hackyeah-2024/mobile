@@ -66,6 +66,20 @@ const SUBMIT_ANSWER = gql`
   }
 `;
 
+const PROFILE = gql`
+  query UserMe {
+    userMe {
+      username
+      badges {
+        picture
+      }
+      friends {
+        username
+      }
+    }
+  }
+`;
+
 const GET_USER_ME = (routeId: string) => {
   return gql`
 query UserMe {
@@ -112,4 +126,4 @@ const HEROES = gql`
 `;
 
 
-export { GET_ROUTES, GET_ROUTES_BY_ID, SUBMIT_ANSWER, GET_USER_ME, HEROES }
+export { GET_ROUTES, GET_ROUTES_BY_ID, SUBMIT_ANSWER, GET_USER_ME, HEROES, PROFILE as USERNAME }
