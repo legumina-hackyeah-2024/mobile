@@ -7,6 +7,7 @@ import {Profile} from "../screens/Profile/Profile";
 import {PersonDetails} from "../screens/PersonDetails";
 import {Settings} from "../screens/Settings";
 import FollowerMap from "../components/Map/FollowerMap";
+import { Image } from "react-native";
 
 const Stack = createStackNavigator();
 
@@ -34,12 +35,22 @@ const PeopleStackNavigator = () => {
             ...screenOptionStyle,
             headerTitleAlign: 'left',
             headerShown: true,
+            headerTitleStyle: {
+                fontFamily: 'CaveatBrush_400Regular',
+                color: '#295046',
+                fontSize: 50,
+            },
             title: 'Kronika',
         }}>
             <Stack.Screen name="People" component={People}/>
             <Stack.Screen name="PersonDetails"
                           component={PersonDetails}
-                          options={{headerBackTitle: '', headerTitle: '', headerTintColor: 'black'}}
+                          options={{
+                            headerBackTitle: '', 
+                            headerTitle: '', 
+                            headerTintColor: 'black',
+                            headerBackImage: () => <Image source={require('../assets/icons/back-arrow.png')} style={{width: 24, height: 24, marginLeft: 10}}/>
+                        }}
             />
         </Stack.Navigator>
     );

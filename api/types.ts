@@ -14,7 +14,7 @@ interface Route {
 
 interface Person {
     id: string
-    image: string
+    picture: string
     name: string
     description: string
 
