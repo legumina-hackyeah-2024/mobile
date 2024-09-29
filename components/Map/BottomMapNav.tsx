@@ -4,6 +4,7 @@ import {NextStationStage} from "../MapNavStages/NextStationStage";
 import {CloseStage} from "../MapNavStages/CloseStage";
 import {QuestionStage} from "../MapNavStages/QuestionStage";
 import {UserMe} from "../../api/types";
+import {QuestionComplete} from "../MapNavStages/QuestionComplete";
 
 
 interface BottomMapNavProps {
@@ -16,11 +17,12 @@ interface BottomMapNavProps {
     goNextStage: any
     description: string
     currentUserMe: any
+    goToTaskComplete: any
 }
 
 let heightFactor = 0.3;
 
-export function BottomMapNav({nextStation, theme, distanceLeft, duration, stage, goToExercise, goNextStage, description, currentUserMe}: BottomMapNavProps) {
+export function BottomMapNav({nextStation, theme, distanceLeft, duration, stage, goToExercise, goToTaskComplete, goNextStage, description, currentUserMe}: BottomMapNavProps) {
     const getStage = (stage: string) => {
         switch (stage) {
             case 'next-station':
@@ -28,7 +30,9 @@ export function BottomMapNav({nextStation, theme, distanceLeft, duration, stage,
             case 'close':
                 return <CloseStage onPress={goToExercise}/>
             case 'question':
-                return <QuestionStage goNextStage={goNextStage} currentUserMe={currentUserMe}/>
+                return <QuestionStage goNextStage={goToTaskComplete} currentUserMe={currentUserMe}/>
+            case 'task-complete':
+                return <QuestionComplete goNextStage={goNextStage}/>
             default:
                 return <></>
         }

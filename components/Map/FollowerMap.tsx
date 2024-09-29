@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Dimensions, Image, StyleSheet, View } from "react-native";
+import {Button, Dimensions, Image, StyleSheet, View} from "react-native";
 import * as Location from "expo-location";
 import MapView, { Marker } from "react-native-maps";
 import MapViewDirections from "react-native-maps-directions";
@@ -32,14 +32,23 @@ const FollowerMap = ({ navigation, route }: any) => {
         },
     });
 
-
     const goNextPoint = () => {
+        if(currentPoint + 1 === points.length - 1) {
+            navigation.navigate('FinishScreen');
+        }
+
         setCurrentPoint((prev) => prev + 1);
         setStage('next-station');
     };
 
     const goToExercise = () => {
+        goNextPoint();
         setStage('question');
+    };
+
+    const goToTaskComplete = () => {
+        goNextPoint();
+        setStage('task-complete');
     };
 
     const calculateTotalDistanceLeft = (currentLocation: any, points: any[], currentPoint: number) => {
@@ -186,7 +195,6 @@ const FollowerMap = ({ navigation, route }: any) => {
                                         source={require("../../assets/icons/map_destination_ping.png")}
                                     />
                                 </Marker>
-
                                 {/*<MapViewDirections*/}
                                 {/*    key={points[currentPoint].title}*/}
                                 {/*    mode={"WALKING"}*/}
@@ -205,6 +213,7 @@ const FollowerMap = ({ navigation, route }: any) => {
                             </>
                         )}
                     </MapView>
+                    <Button onPress={() => goToExercise()} title={'TEST'}/>
                     <BottomMapNav
                         nextStation={points[currentPoint].title}
                         currentUserMe={data}
@@ -214,6 +223,7 @@ const FollowerMap = ({ navigation, route }: any) => {
                         stage={stage}
                         goNextStage={goNextPoint}
                         goToExercise={goToExercise}
+                        goToTaskComplete={goToTaskComplete}
                         distanceLeft={Math.round(totalDistanceLeft * 100) / 100}
                     />
                 </>
