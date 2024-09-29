@@ -9,10 +9,14 @@ export function QuestionStage({goNextStage, currentUserMe}: any) {
     if (!currentUserMe)
         return <></>
 
-    const pointIndx = currentUserMe.userMe.progressOfRoute.currentPointIdx;
+    const pointIdx = currentUserMe.userMe.progressOfRoute.currentPointIdx;
     const routeId = currentUserMe.userMe.progressOfRoute.routeId;
     const question = currentUserMe.userMe.progressOfRoute.currentPoint.question;
     const answers = currentUserMe.userMe.progressOfRoute.currentPoint.answers;
+
+    console.log(pointIdx)
+    console.log(routeId)
+    console.log(question)
 
     const [badAnswers, setBadAnswers] = React.useState<number[]>([]);
     const [submitAnswer] = useMutation(SUBMIT_ANSWER, {
@@ -29,16 +33,18 @@ export function QuestionStage({goNextStage, currentUserMe}: any) {
 
     const handleAnswerClick = (answerIndex: number) => {
         submitAnswer({
-            variables: {routeId: routeId, pointIdx: pointIndx, answerIdx: answerIndex},
+            variables: {routeId: routeId, pointIdx: pointIdx, answerIdx: answerIndex},
         })
             .then((response) => {
                 console.log("Answer submitted successfully:", response.data);
                 goNextStage();
             })
             .catch((error) => {
-                console.error("Error submitting answer:", error);
-                addBadAnswer(answerIndex);
-                goNextStage();
+                console.error("Error submitting answer:", JSON.stringify(error));
+                if (error.extensions.code === "ANSWER_IS_NOT_CORRECT") {
+                    addBadAnswer(answerIndex);
+                }
+                // goNextStage();
             });
     };
 

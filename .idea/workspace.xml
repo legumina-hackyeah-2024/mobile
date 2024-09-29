@@ -4,26 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="30b3ca93-8500-4d59-9c29-ea3008e442e8" name="Changes" comment="login page">
-      <change afterPath="$PROJECT_DIR$/.readme.assets/another-screen-path.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.readme.assets/finished.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.readme.assets/homeScreen.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.readme.assets/kronika.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.readme.assets/login-mockup.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.readme.assets/logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.readme.assets/msciwko.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.readme.assets/place-arrived.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.readme.assets/questions.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.readme.assets/route-start-2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.readme.assets/route-start.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.readme.assets/routing-init.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.readme.assets/screen-image.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.readme.assets/task-done.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.readme.assets/wrocko.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/readme.md" afterDir="false" />
+    <list default="true" id="30b3ca93-8500-4d59-9c29-ea3008e442e8" name="Changes" comment="app and screenshots done -&gt; only write detailed overview">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Map/BottomMapNav.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/Map/BottomMapNav.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/Map/FollowerMap.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/Map/FollowerMap.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/MapNavStages/QuestionComplete.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/MapNavStages/QuestionComplete.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/MapNavStages/QuestionStage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/MapNavStages/QuestionStage.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -141,7 +127,7 @@
       <workItem from="1727300100889" duration="1360000" />
       <workItem from="1727330511076" duration="11000" />
       <workItem from="1727521824316" duration="45686000" />
-      <workItem from="1727569963089" duration="10659000" />
+      <workItem from="1727569963089" duration="14324000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -311,7 +297,15 @@
       <option name="project" value="LOCAL" />
       <updated>1727578751691</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="app and screenshots done -&gt; only write detailed overview">
+      <option name="closed" value="true" />
+      <created>1727580665563</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1727580665563</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -354,19 +348,20 @@
     <MESSAGE value="backend integration part 1" />
     <MESSAGE value="more backend integration" />
     <MESSAGE value="login page" />
-    <option name="LAST_COMMIT_MESSAGE" value="login page" />
+    <MESSAGE value="app and screenshots done -&gt; only write detailed overview" />
+    <option name="LAST_COMMIT_MESSAGE" value="app and screenshots done -&gt; only write detailed overview" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/components/Map/BottomMapNav.tsx</url>
-          <line>43</line>
+          <line>41</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/components/Map/FollowerMap.tsx</url>
-          <line>172</line>
+          <line>195</line>
           <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="4" />
         </line-breakpoint>

@@ -32,22 +32,32 @@ const FollowerMap = ({ navigation, route }: any) => {
         },
     });
 
-    const goNextPoint = () => {
-        if(currentPoint + 1 === points.length - 1) {
+    useEffect(() => {
+        setCurrentPoint(data?.userMe.progressOfRoute.currentPointIdx || 0);
+        if(data && data.userMe.progressOfRoute.status === "completed") {
+            console.log("WORKING")
+            navigation.navigate('FinishScreen');
+        }
+    }, [data]);
+
+    useEffect(() => {
+
+    }, [currentPoint])
+
+    const goNextPoint = (nextPoint: number) => {
+        if(currentPoint + 1 === points.length) {
             navigation.navigate('FinishScreen');
         }
 
-        setCurrentPoint((prev) => prev + 1);
+        setCurrentPoint(nextPoint);
         setStage('next-station');
     };
 
     const goToExercise = () => {
-        goNextPoint();
         setStage('question');
     };
 
     const goToTaskComplete = () => {
-        goNextPoint();
         setStage('task-complete');
     };
 
@@ -171,6 +181,7 @@ const FollowerMap = ({ navigation, route }: any) => {
                     >
                         {currentLocation && (
                             <>
+                                {/* Dynamic current location marker */}
                                 <Marker
                                     coordinate={{
                                         latitude: currentLocation.latitude,
@@ -212,7 +223,7 @@ const FollowerMap = ({ navigation, route }: any) => {
                             </>
                         )}
                     </MapView>
-                    <Button onPress={() => goToExercise()} title={'TEST'}/>
+                    <Button onPress={() => goToExercise()} title={'SKIP_BEING_CLOSE_LOGIC'}/>
                     <BottomMapNav
                         nextStation={points[currentPoint].title}
                         currentUserMe={data}

@@ -20,8 +20,6 @@ interface BottomMapNavProps {
     goToTaskComplete: any
 }
 
-let heightFactor = 0.3;
-
 export function BottomMapNav({nextStation, theme, distanceLeft, duration, stage, goToExercise, goToTaskComplete, goNextStage, description, currentUserMe}: BottomMapNavProps) {
     const getStage = (stage: string) => {
         switch (stage) {
@@ -32,7 +30,7 @@ export function BottomMapNav({nextStation, theme, distanceLeft, duration, stage,
             case 'question':
                 return <QuestionStage goNextStage={goToTaskComplete} currentUserMe={currentUserMe}/>
             case 'task-complete':
-                return <QuestionComplete goNextStage={goNextStage}/>
+                return <QuestionComplete goNextStage={goNextStage} currentUserMe={currentUserMe}/>
             default:
                 return <></>
         }
