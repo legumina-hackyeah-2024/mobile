@@ -35,8 +35,6 @@ export default function App() {
         return <Text>Loading...</Text>;
     }
 
-    // 50.061522, 19.939093
-
     return <ApolloProvider client={client}>
             <NavigationContainer>
                 <Stack.Navigator screenOptions={screenOptionStyle}>

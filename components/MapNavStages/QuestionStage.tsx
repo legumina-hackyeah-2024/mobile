@@ -1,49 +1,78 @@
 import React from "react";
-import {Button, Dimensions, StyleSheet, Text, View} from "react-native";
+import { Button, Dimensions, StyleSheet, Text, View, ActivityIndicator } from "react-native";
+import { useMutation } from "@apollo/client";
+import gql from "graphql-tag";
+import {SUBMIT_ANSWER} from "../../api/queries";
 
-export function QuestionStage({goNextStage}: any) {
-    const onPress = () => {
-        goNextStage();
-    }
+export function QuestionStage({ goNextStage, currentUserMe }: any) {
+    const pointIndx = currentUserMe.userMe.progressOfRoute.currentPointIdx;
+    const routeId = currentUserMe.userMe.progressOfRoute.routeId;
+    const question = currentUserMe.userMe.progressOfRoute.currentPoint.question;
+    const answers = currentUserMe.userMe.progressOfRoute.currentPoint.answers;
 
-    return <View style={styles.container}>
-        <Text style={styles.formattedText}>Twoje zadanie</Text>
-        <Text>Lorem ipsum dolor sit amet consectetur. Tristique pellentesque tellus tellus auctor velit ornare urna eget tortor. Sollicitudin quisque tristique viverra tortor. Sollicitudin quisque. tristique viverra tortor. Sollicitudin quisque.</Text>
-        <View style={styles.buttonStyle}>
-            <Button color='#295046' title='Odpowiedź A' onPress={onPress}/>
+    const [badAnswers, setBadAnswers] = React.useState<number[]>([]);
+    const [submitAnswer, { data, loading, error }] = useMutation(SUBMIT_ANSWER, {
+        context: {
+            headers: {
+                Authorization: `Bearer ${process.env.EXPO_PUBLIC_JWT}`,
+            },
+        },
+    });
+
+    const addBadAnswer = (answerIndex: number) => {
+        setBadAnswers([...badAnswers, answerIndex]);
+    };
+
+    const handleAnswerClick = (answerIndex: number) => {
+        submitAnswer({
+            variables: { routeId: routeId, pointIdx: pointIndx, answerIdx: answerIndex },
+        })
+            .then((response) => {
+                console.log("Answer submitted successfully:", response.data);
+                goNextStage();
+            })
+            .catch((error) => {
+                console.error("Error submitting answer:", error);
+                addBadAnswer(answerIndex);
+                goNextStage();
+            });
+    };
+
+    return (
+        <View style={styles.container}>
+            <Text style={styles.formattedText}>Your Question</Text>
+            <Text>{question}</Text>
+            {answers.map((answer: string, index: number) => {
+                return (
+                    <View
+                        style={{ ...styles.buttonStyle, opacity: badAnswers.includes(index) ? 0.5 : 1 }}
+                        key={index}
+                    >
+                        <Button color="#295046" title={answer} onPress={() => handleAnswerClick(index)} />
+                    </View>
+                );
+            })}
         </View>
-
-        <View style={styles.buttonStyle}>
-            <Button color='#295046' title='Odpowiedź B' onPress={onPress}/>
-        </View>
-
-        <View style={styles.buttonStyle}>
-            <Button color='#295046' title='Odpowiedź C' onPress={onPress}/>
-        </View>
-
-        <View style={styles.buttonStyle}>
-            <Button color='#295046' title='Odpowiedź D' onPress={onPress}/>
-        </View>
-    </View>
-
+    );
 }
 
 const styles = StyleSheet.create({
     container: {
-        height: Dimensions.get('window').height * 0.7,
-        width: '100%',
-        backgroundColor: 'white',
+        height: Dimensions.get("window").height * 0.6,
+        width: "100%",
+        backgroundColor: "white",
         borderRadius: 30,
-        paddingHorizontal: '8%',
+        paddingHorizontal: "8%",
         paddingVertical: 4,
-        gap: Dimensions.get('window').height * 0.02
+        gap: Dimensions.get("window").height * 0.02,
     },
     formattedText: {
-        fontFamily: 'CaveatBrush_400Regular',
-        fontSize: 40
+        fontFamily: "CaveatBrush_400Regular",
+        color: "#295046",
+        fontSize: 40,
     },
     buttonStyle: {
-        backgroundColor: '#E8F3F0',
+        backgroundColor: "#E8F3F0",
         borderRadius: 20,
-    }
-})
+    },
+});

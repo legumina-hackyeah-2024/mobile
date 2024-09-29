@@ -46,4 +46,59 @@ const GET_ROUTES_BY_ID = (id: string) => {
 }
 
 
-export {GET_ROUTES, GET_ROUTES_BY_ID}
+const SUBMIT_ANSWER = gql`
+  mutation Answer($routeId: String!, $pointIdx: Int!, $answerIdx: Int!) {
+    answer(input: { routeId: $routeId, pointIdx: $pointIdx, answerIdx: $answerIdx }) {
+      progressOfRoute(input: { routeId: $routeId }) {
+        routeId
+        status
+        currentPointIdx
+        currentPoint {
+          title
+          description
+          lat
+          lng
+          question
+          answers
+        }
+      }
+    }
+  }
+`;
+
+const GET_USER_ME = (routeId: string) => {
+    return gql`
+query UserMe {
+    userMe {
+        badges {
+            id
+            picture
+        }
+        progressOfRoute(input: { routeId: "${routeId}" }) {
+            routeId
+            status
+            currentPointIdx
+            currentPoint {
+                title
+                description
+                lat
+                lng
+                question
+                answers
+            }
+        }
+        completedRoutes {
+            routeId
+            route {
+                title
+            }
+            completedAt
+        }
+    }
+}
+`;
+}
+
+
+
+export {GET_ROUTES, GET_ROUTES_BY_ID, SUBMIT_ANSWER, GET_USER_ME}

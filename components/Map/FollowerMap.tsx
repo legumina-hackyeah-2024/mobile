@@ -4,6 +4,8 @@ import * as Location from "expo-location";
 import MapView, { Marker } from "react-native-maps";
 import MapViewDirections from "react-native-maps-directions";
 import { BottomMapNav } from "./BottomMapNav";
+import {useLazyQuery, useQuery} from "@apollo/client";
+import {GET_ROUTES_BY_ID, GET_USER_ME} from "../../api/queries";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -20,6 +22,16 @@ const FollowerMap = ({ navigation, route }: any) => {
     const [isClose, setIsClose] = useState<boolean>(false);
     const [totalDistanceLeft, setTotalDistanceLeft] = useState<number>(0);
     const [stage, setStage] = useState('next-station');
+
+    const { data, loading, error } = useQuery(GET_USER_ME(startingPoint.id), {
+        variables: { id: startingPoint.id },
+        context: {
+            headers: {
+                Authorization: `Bearer ${process.env.EXPO_PUBLIC_JWT}`,
+            },
+        },
+    });
+
 
     const goNextPoint = () => {
         setCurrentPoint((prev) => prev + 1);
@@ -72,7 +84,6 @@ const FollowerMap = ({ navigation, route }: any) => {
                 setIsClose(false);
             }
 
-            // Dynamically animate the map to the user's current location
             _mapView.current?.animateToRegion({
                 latitude: currentLocation.latitude,
                 longitude: currentLocation.longitude,
@@ -85,7 +96,6 @@ const FollowerMap = ({ navigation, route }: any) => {
         }
     }, [currentLocation, currentPoint, points]);
 
-    // Watch position and move map dynamically to the user's location
     useEffect(() => {
         let locationSubscription: any;
 
@@ -177,26 +187,27 @@ const FollowerMap = ({ navigation, route }: any) => {
                                     />
                                 </Marker>
 
-                                <MapViewDirections
-                                    key={points[currentPoint].title}
-                                    mode={"WALKING"}
-                                    strokeWidth={4}
-                                    strokeColor='#295046'
-                                    origin={{
-                                        latitude: currentLocation.latitude,
-                                        longitude: currentLocation.longitude,
-                                    }}
-                                    destination={{
-                                        latitude: points[currentPoint].lat,
-                                        longitude: points[currentPoint].lng,
-                                    }}
-                                    apikey={process.env.EXPO_PUBLIC_API_KEY!}
-                                />
+                                {/*<MapViewDirections*/}
+                                {/*    key={points[currentPoint].title}*/}
+                                {/*    mode={"WALKING"}*/}
+                                {/*    strokeWidth={4}*/}
+                                {/*    strokeColor='#295046'*/}
+                                {/*    origin={{*/}
+                                {/*        latitude: currentLocation.latitude,*/}
+                                {/*        longitude: currentLocation.longitude,*/}
+                                {/*    }}*/}
+                                {/*    destination={{*/}
+                                {/*        latitude: points[currentPoint].lat,*/}
+                                {/*        longitude: points[currentPoint].lng,*/}
+                                {/*    }}*/}
+                                {/*    apikey={process.env.EXPO_PUBLIC_API_KEY!}*/}
+                                {/*/>*/}
                             </>
                         )}
                     </MapView>
                     <BottomMapNav
                         nextStation={points[currentPoint].title}
+                        currentUserMe={data}
                         theme="Trasa historyczna"
                         description={points[currentPoint].description}
                         duration={elapsedTime}

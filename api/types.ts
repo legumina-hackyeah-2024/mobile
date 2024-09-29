@@ -33,4 +33,24 @@ interface Points {
     lng: number
 }
 
-export type { Route, Person, Hero, Points }
+interface UserMe {
+    data: {
+        answer: {
+            progressOfRoute: {
+                routeId: string
+                status: string
+                currentPointIdx: number
+                currentPoint: {
+                    title: string
+                    description: string
+                    lat: number
+                    lng: number
+                    question: string
+                    answers: string[]
+                }
+            }
+        }
+    }
+}
+
+export type { Route, Person, Hero, Points, UserMe }

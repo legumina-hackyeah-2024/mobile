@@ -110,7 +110,7 @@ const Map = ({navigation}: any) => {
 
                             >
                                 <Image
-                                    style={{width: 40, height: 40, borderRadius: 100}}
+                                    style={{width: 40, height: 40, borderRadius: 100, borderWidth: 2, borderColor: '#295046'}}
                                     src={marker.hero.picture}
                                 />
                             </Marker>

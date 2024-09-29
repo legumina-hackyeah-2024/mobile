@@ -7,7 +7,7 @@ export function Login() {
 
     const login = async () => {
         const result = await WebBrowser.openAuthSessionAsync('https://treasures-of-poland.up.railway.app/google');
-        console.log(result)
+        // console.log(result)
     }
 
     return <View style={styles.container}>

@@ -17,14 +17,17 @@ export function MarkerDetails({propsData, navigation, closeDrawer}: MarkerDetail
 
     let udogodnienieImages = new Map<string, any>([
         ["ELDERLY", <Image
+            key={1}
             style={{width: 35, height: 35}}
             source={require("../../assets/icons/elderly.png")}
         />],
         ["CHILDREN", <Image
+            key={2}
             style={{width: 35, height: 35}}
             source={require("../../assets/icons/children.png")}
         />],
         ["HANDICAPPED", <Image
+            key={3}
             style={{width: 35, height: 35}}
             source={require("../../assets/icons/handicapped.png")}
         />
@@ -66,11 +69,13 @@ export function MarkerDetails({propsData, navigation, closeDrawer}: MarkerDetail
 
             <View style={styles.detailsContainer}>
                 <Text style={{fontFamily: 'Sofia Sans'}}>Trudność:</Text>
-                {[...Array(propsData.difficulty)].map(() => <Image
+                {[...Array(propsData.difficulty)].map((value, index, array) => <Image
+                    key={index}
                     style={{width: 35, height: 35}}
                     source={require("../../assets/icons/star_fill.png")}
                 />)}
-                {[...Array(5 - propsData.difficulty)].map(() => <Image
+                {[...Array(5 - propsData.difficulty)].map((value, index, array) => <Image
+                    key={index + 10}
                     style={{width: 35, height: 35}}
                     source={require("../../assets/icons/star_empty.png")}
                 />)}
