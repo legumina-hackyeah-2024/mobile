@@ -4,24 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="30b3ca93-8500-4d59-9c29-ea3008e442e8" name="Changes" comment="NEARLY WORKING OMGGG">
+    <list default="true" id="30b3ca93-8500-4d59-9c29-ea3008e442e8" name="Changes" comment="backend integration part 1">
       <change afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/icons/hi_icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/icons/children.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/icons/elderly.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/icons/handicapped.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/icons/star_empty.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/icons/star_fill.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/mocked.ts" beforeDir="false" afterPath="$PROJECT_DIR$/api/mocked.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/queries.ts" beforeDir="false" afterPath="$PROJECT_DIR$/api/queries.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/icons/home.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/icons/home.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/icons/people.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/icons/people.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/icons/profile.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/icons/profile.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/Header.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/api/types.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/Map/BottomMapNav.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/Map/BottomMapNav.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/Map/FollowerMap.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/Map/FollowerMap.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Map/Map.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/Map/Map.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/MapNavStages/CloseStage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/MapNavStages/CloseStage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Map/MarkerDetails.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/Map/MarkerDetails.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/MapNavStages/NextStationStage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/MapNavStages/NextStationStage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/MapNavStages/QuestionStage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/MapNavStages/QuestionStage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,7 +64,7 @@
     "React Native.iOS.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "/Users/mateusz.jamroz/dev/react-native-pg/navigation/components/MapNavStages",
+    "last_opened_file_path": "/Users/mateusz.jamroz/dev/react-native-pg/navigation/assets/icons",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -81,11 +78,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/assets/icons" />
       <recent name="$PROJECT_DIR$/components/MapNavStages" />
       <recent name="$PROJECT_DIR$/assets/fonts" />
       <recent name="$PROJECT_DIR$/components/Map" />
       <recent name="$PROJECT_DIR$/screens" />
-      <recent name="$PROJECT_DIR$/api" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/components/Map" />
@@ -138,7 +135,7 @@
       <workItem from="1727300006740" duration="26000" />
       <workItem from="1727300100889" duration="1360000" />
       <workItem from="1727330511076" duration="11000" />
-      <workItem from="1727521824316" duration="39585000" />
+      <workItem from="1727521824316" duration="44077000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -268,7 +265,15 @@
       <option name="project" value="LOCAL" />
       <updated>1727561447238</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="backend integration part 1">
+      <option name="closed" value="true" />
+      <created>1727563328783</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1727563328783</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -297,14 +302,15 @@
     <MESSAGE value="IT WORKS LOL" />
     <MESSAGE value="more work" />
     <MESSAGE value="NEARLY WORKING OMGGG" />
-    <option name="LAST_COMMIT_MESSAGE" value="NEARLY WORKING OMGGG" />
+    <MESSAGE value="backend integration part 1" />
+    <option name="LAST_COMMIT_MESSAGE" value="backend integration part 1" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/components/Map/BottomMapNav.tsx</url>
-          <line>36</line>
+          <line>37</line>
           <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="3" />
         </line-breakpoint>

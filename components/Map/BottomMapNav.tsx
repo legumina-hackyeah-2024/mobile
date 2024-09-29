@@ -13,15 +13,16 @@ interface BottomMapNavProps {
     stage: string
     goToExercise: any
     goNextStage: any
+    description: string
 }
 
 let heightFactor = 0.3;
 
-export function BottomMapNav({nextStation, theme, distanceLeft, duration, stage, goToExercise, goNextStage}: BottomMapNavProps) {
+export function BottomMapNav({nextStation, theme, distanceLeft, duration, stage, goToExercise, goNextStage, description}: BottomMapNavProps) {
     const getStage = (stage: string) => {
         switch (stage) {
             case 'next-station':
-                return <NextStationStage nextStation={nextStation} theme={theme} duration={duration} distanceLeft={distanceLeft}/>
+                return <NextStationStage nextStation={nextStation} theme={theme} duration={duration} distanceLeft={distanceLeft} description={description}/>
             case 'close':
                 return <CloseStage onPress={goToExercise}/>
             case 'question':

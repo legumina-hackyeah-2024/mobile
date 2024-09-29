@@ -13,6 +13,7 @@ const GET_ROUTES = gql`
     description
     distance
     difficulty
+    facilities
     lat
     lng
     points {

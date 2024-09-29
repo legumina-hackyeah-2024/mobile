@@ -180,6 +180,8 @@ const FollowerMap = ({ navigation, route }: any) => {
                                 <MapViewDirections
                                     key={points[currentPoint].title}
                                     mode={"WALKING"}
+                                    strokeWidth={4}
+                                    strokeColor='#295046'
                                     origin={{
                                         latitude: currentLocation.latitude,
                                         longitude: currentLocation.longitude,
@@ -194,8 +196,9 @@ const FollowerMap = ({ navigation, route }: any) => {
                         )}
                     </MapView>
                     <BottomMapNav
-                        nextStation="Jakas stacja"
+                        nextStation={points[currentPoint].title}
                         theme="Trasa historyczna"
+                        description={points[currentPoint].description}
                         duration={elapsedTime}
                         stage={stage}
                         goNextStage={goNextPoint}

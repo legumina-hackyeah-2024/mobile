@@ -7,6 +7,9 @@ interface Route {
     difficulty: number
     lat: number
     lng: number
+    points: Points[]
+    hero: Hero
+    facilities: string[]
 }
 
 interface Person {
@@ -14,7 +17,20 @@ interface Person {
     image: string
     name: string
     description: string
+
 }
 
+interface Hero {
+    name: string
+    description: string
+    picture: string
+}
 
-export type { Route, Person }
+interface Points {
+    title: string
+    description: string
+    lat: number
+    lng: number
+}
+
+export type { Route, Person, Hero, Points }

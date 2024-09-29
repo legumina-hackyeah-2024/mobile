@@ -6,9 +6,10 @@ interface BottomMapNavProps {
     theme: string
     duration: number
     distanceLeft: number
+    description: string
 }
 
-export function NextStationStage({nextStation, theme, distanceLeft, duration}: BottomMapNavProps) {
+export function NextStationStage({nextStation,description, theme, distanceLeft, duration}: BottomMapNavProps) {
 
     const formatTime = (seconds: number) => {
         const h = Math.floor(seconds / 3600);
@@ -18,8 +19,8 @@ export function NextStationStage({nextStation, theme, distanceLeft, duration}: B
     };
 
     return <View style={styles.container}>
-        <Text style={styles.formattedText}>Nastepna stacja: {nextStation}</Text>
-        <Text>Lorem ipsum dolor sit amet consectetur. Tristique pellentesque tellus tellus auctor velit ornare urna eget tortor. Sollicitudin quisque tristique viverra tortor. Sollicitudin quisque. tristique viverra tortor. Sollicitudin quisque.</Text>
+        <Text style={styles.formattedText}>Następna stacja: {nextStation}</Text>
+        <Text>{description}</Text>
         <View style={styles.line}/>
         <Text style={styles.formattedText}>{theme}</Text>
         <View style={styles.informationContent}>
@@ -31,7 +32,7 @@ export function NextStationStage({nextStation, theme, distanceLeft, duration}: B
 
 const styles = StyleSheet.create({
     container: {
-        height: Dimensions.get('window').height * 0.5,
+        height: Dimensions.get('window').height * 0.6,
         width: '100%',
         backgroundColor: 'white',
         borderRadius: 30,
@@ -45,6 +46,7 @@ const styles = StyleSheet.create({
     },
     formattedText: {
         fontFamily: 'CaveatBrush_400Regular',
+        color: '#295046',
         fontSize: 30
     },
     informationContent: {
