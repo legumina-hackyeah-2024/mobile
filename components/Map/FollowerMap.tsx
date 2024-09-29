@@ -14,7 +14,7 @@ const FollowerMap = ({ navigation, route }: any) => {
     const [currentLocation, setCurrentLocation]: any = useState(null);
     const [initialRegion, setInitialRegion]: any = useState(null);
     const [elapsedTime, setElapsedTime] = useState<number>(0);
-    let _mapView: any = useRef<MapView>(null); // Ref to control the map view
+    let _mapView: any = useRef<MapView>(null);
 
     const startingPoint = route.params.propsData;
     const points = route.params.data.route.points;
@@ -171,7 +171,6 @@ const FollowerMap = ({ navigation, route }: any) => {
                     >
                         {currentLocation && (
                             <>
-                                {/* Dynamic current location marker */}
                                 <Marker
                                     coordinate={{
                                         latitude: currentLocation.latitude,
@@ -195,21 +194,21 @@ const FollowerMap = ({ navigation, route }: any) => {
                                         source={require("../../assets/icons/map_destination_ping.png")}
                                     />
                                 </Marker>
-                                {/*<MapViewDirections*/}
-                                {/*    key={points[currentPoint].title}*/}
-                                {/*    mode={"WALKING"}*/}
-                                {/*    strokeWidth={4}*/}
-                                {/*    strokeColor='#295046'*/}
-                                {/*    origin={{*/}
-                                {/*        latitude: currentLocation.latitude,*/}
-                                {/*        longitude: currentLocation.longitude,*/}
-                                {/*    }}*/}
-                                {/*    destination={{*/}
-                                {/*        latitude: points[currentPoint].lat,*/}
-                                {/*        longitude: points[currentPoint].lng,*/}
-                                {/*    }}*/}
-                                {/*    apikey={process.env.EXPO_PUBLIC_API_KEY!}*/}
-                                {/*/>*/}
+                                <MapViewDirections
+                                    key={points[currentPoint].title}
+                                    mode={"WALKING"}
+                                    strokeWidth={4}
+                                    strokeColor='#295046'
+                                    origin={{
+                                        latitude: currentLocation.latitude,
+                                        longitude: currentLocation.longitude,
+                                    }}
+                                    destination={{
+                                        latitude: points[currentPoint].lat,
+                                        longitude: points[currentPoint].lng,
+                                    }}
+                                    apikey={process.env.EXPO_PUBLIC_API_KEY!}
+                                />
                             </>
                         )}
                     </MapView>
