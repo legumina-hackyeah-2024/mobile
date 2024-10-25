@@ -40,8 +40,8 @@ export default function App() {
     return <ApolloProvider client={client}>
             <NavigationContainer>
                 <Stack.Navigator screenOptions={screenOptionStyle}>
-                    <Stack.Screen name="Test" component={BottomTabNavigator}/>
                     <Stack.Screen name="LoginNavigator" component={Login} />
+                    <Stack.Screen name="Test" component={BottomTabNavigator}/>
                     <Stack.Screen name="FollowerMap" component={FollowerMap}/>
                     <Stack.Screen name="FinishScreen" component={FinishScreen}/>
                 </Stack.Navigator>

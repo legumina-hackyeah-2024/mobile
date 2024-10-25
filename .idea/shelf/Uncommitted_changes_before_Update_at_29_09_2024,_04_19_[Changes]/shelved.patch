@@ -1,0 +1,397 @@
+Index: .env.example
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.env.example b/.env.example
+new file mode 100644
+--- /dev/null	(date 1727576364909)
++++ b/.env.example	(date 1727576364909)
+@@ -0,0 +1,2 @@
++EXPO_PUBLIC_API_KEY=
++EXPO_PUBLIC_JWT=
+\ No newline at end of file
+Index: screens/FinishScreen.tsx
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/screens/FinishScreen.tsx b/screens/FinishScreen.tsx
+new file mode 100644
+--- /dev/null	(date 1727576316836)
++++ b/screens/FinishScreen.tsx	(date 1727576316836)
+@@ -0,0 +1,41 @@
++import React from "react";
++import {Button, Dimensions, Image, StyleSheet, Text, View} from "react-native";
++
++export function FinishScreen({navigation}: any) {
++    return <View style={styles.container}>
++        <Image
++            style={{width: 350, height: 350}}
++            source={require("../assets/images/last_person.png")}
++        />
++        <View style={styles.content}>
++            <Text style={{
++                fontFamily: 'CaveatBrush_400Regular',
++                color: '#295046',
++                fontSize: 50,
++            }}>Brawo</Text>
++            <Text style={{fontFamily: 'Sofia Sans', fontSize: 17}}>Lorem ipsum dolor sit amet consectetur. Tristique pellentesque tellus tellus auctor velit ornare urna
++                eget tortor. Sollicitudin quisque tristique viverra turpis tellus suscipit duis dignissim libero.</Text>
++            <View style={{backgroundColor: '#3A6157', borderRadius: 25}}>
++                <Button color='white' title='Moje odznaki'/>
++            </View>
++            <View style={{borderColor: '#3A6157', borderRadius: 25, borderWidth: 1}}>
++                <Button color='#3A6157' title='Wróć do ekranu głównego' onPress={() => navigation.navigate('Test')}/>
++            </View>
++        </View>
++    </View>
++}
++
++const styles = StyleSheet.create({
++    container: {
++        paddingVertical: 60,
++        paddingHorizontal: 40,
++        display: "flex",
++        justifyContent: "center",
++        alignItems: "center"
++    },
++    content: {
++        display: "flex",
++        justifyContent: "space-between",
++        height: Dimensions.get('window').height * 0.4
++    }
++});
+\ No newline at end of file
+Index: App.tsx
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import {NavigationContainer} from \"@react-navigation/native\";\nimport React from \"react\";\nimport {AppRegistry, Dimensions, StyleSheet, Text, View} from \"react-native\";\nimport {ApolloClient, ApolloProvider, InMemoryCache} from \"@apollo/client\";\nimport {client} from \"./api/ApolloClient\";\nimport Home from \"./screens/Home\";\nimport {createStackNavigator} from \"@react-navigation/stack\";\nimport {createBottomTabNavigator} from \"@react-navigation/bottom-tabs\";\nimport BottomTabNavigator from \"./navigation/TabNavigator\";\nimport {Login} from \"./screens/Login\";\nimport FollowerMap from \"./components/Map/FollowerMap\";\nimport {useFonts} from \"expo-font\";\nimport {CaveatBrush_400Regular} from \"@expo-google-fonts/caveat-brush\";\nimport {SofiaSans_300Light} from \"@expo-google-fonts/sofia-sans\";\n\n\nconst Stack = createStackNavigator();\n\nconst screenOptionStyle = {\n    headerStyle: {\n        backgroundColor: \"#9AC4F8\",\n    },\n    headerTintColor: \"white\",\n    headerBackTitle: \"Back\",\n    headerShown: false\n};\n\nexport default function App() {\n    const [fontsLoaded] = useFonts({\n        CaveatBrush_400Regular,\n        SofiaSans_300Light\n    });\n\n    if (!fontsLoaded) {\n        return <Text>Loading...</Text>;\n    }\n\n    return <ApolloProvider client={client}>\n            <NavigationContainer>\n                <Stack.Navigator screenOptions={screenOptionStyle}>\n                    <Stack.Screen name=\"Test\" component={BottomTabNavigator}/>\n                    <Stack.Screen name=\"LoginNavigator\" component={Login} />\n                    <Stack.Screen name=\"FollowerMap\" component={FollowerMap}/>\n                </Stack.Navigator>\n            </NavigationContainer>\n    </ApolloProvider>;\n\n}\n\n\n\nAppRegistry.registerComponent('MyApplication', () => App);\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/App.tsx b/App.tsx
+--- a/App.tsx	(revision 5ba991dc82ac6a1f7bb3e2d4c0ba5e5364b2cbc0)
++++ b/App.tsx	(date 1727575334641)
+@@ -12,6 +12,7 @@
+ import {useFonts} from "expo-font";
+ import {CaveatBrush_400Regular} from "@expo-google-fonts/caveat-brush";
+ import {SofiaSans_300Light} from "@expo-google-fonts/sofia-sans";
++import {FinishScreen} from "./screens/FinishScreen";
+ 
+ 
+ const Stack = createStackNavigator();
+@@ -41,6 +42,7 @@
+                     <Stack.Screen name="Test" component={BottomTabNavigator}/>
+                     <Stack.Screen name="LoginNavigator" component={Login} />
+                     <Stack.Screen name="FollowerMap" component={FollowerMap}/>
++                    <Stack.Screen name="FinishScreen" component={FinishScreen}/>
+                 </Stack.Navigator>
+             </NavigationContainer>
+     </ApolloProvider>;
+Index: components/Map/BottomMapNav.tsx
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import {Dimensions, StyleSheet, Text, View} from \"react-native\";\nimport React from \"react\";\nimport {NextStationStage} from \"../MapNavStages/NextStationStage\";\nimport {CloseStage} from \"../MapNavStages/CloseStage\";\nimport {QuestionStage} from \"../MapNavStages/QuestionStage\";\nimport {UserMe} from \"../../api/types\";\n\n\ninterface BottomMapNavProps {\n    nextStation: string\n    theme: string\n    duration: number\n    distanceLeft: number\n    stage: string\n    goToExercise: any\n    goNextStage: any\n    description: string\n    currentUserMe: any\n}\n\nlet heightFactor = 0.3;\n\nexport function BottomMapNav({nextStation, theme, distanceLeft, duration, stage, goToExercise, goNextStage, description, currentUserMe}: BottomMapNavProps) {\n    const getStage = (stage: string) => {\n        switch (stage) {\n            case 'next-station':\n                return <NextStationStage nextStation={nextStation} theme={theme} duration={duration} distanceLeft={distanceLeft} description={description}/>\n            case 'close':\n                return <CloseStage onPress={goToExercise}/>\n            case 'question':\n                return <QuestionStage goNextStage={goNextStage} currentUserMe={currentUserMe}/>\n            default:\n                return <></>\n        }\n    }\n\n    return <>\n        {getStage(stage)}\n    </>\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/components/Map/BottomMapNav.tsx b/components/Map/BottomMapNav.tsx
+--- a/components/Map/BottomMapNav.tsx	(revision 5ba991dc82ac6a1f7bb3e2d4c0ba5e5364b2cbc0)
++++ b/components/Map/BottomMapNav.tsx	(date 1727574937095)
+@@ -4,6 +4,7 @@
+ import {CloseStage} from "../MapNavStages/CloseStage";
+ import {QuestionStage} from "../MapNavStages/QuestionStage";
+ import {UserMe} from "../../api/types";
++import {QuestionComplete} from "../MapNavStages/QuestionComplete";
+ 
+ 
+ interface BottomMapNavProps {
+@@ -16,11 +17,12 @@
+     goNextStage: any
+     description: string
+     currentUserMe: any
++    goToTaskComplete: any
+ }
+ 
+ let heightFactor = 0.3;
+ 
+-export function BottomMapNav({nextStation, theme, distanceLeft, duration, stage, goToExercise, goNextStage, description, currentUserMe}: BottomMapNavProps) {
++export function BottomMapNav({nextStation, theme, distanceLeft, duration, stage, goToExercise, goToTaskComplete, goNextStage, description, currentUserMe}: BottomMapNavProps) {
+     const getStage = (stage: string) => {
+         switch (stage) {
+             case 'next-station':
+@@ -28,7 +30,9 @@
+             case 'close':
+                 return <CloseStage onPress={goToExercise}/>
+             case 'question':
+-                return <QuestionStage goNextStage={goNextStage} currentUserMe={currentUserMe}/>
++                return <QuestionStage goNextStage={goToTaskComplete} currentUserMe={currentUserMe}/>
++            case 'task-complete':
++                return <QuestionComplete goNextStage={goNextStage}/>
+             default:
+                 return <></>
+         }
+Index: components/Map/FollowerMap.tsx
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import React, { useEffect, useRef, useState } from \"react\";\nimport { Dimensions, Image, StyleSheet, View } from \"react-native\";\nimport * as Location from \"expo-location\";\nimport MapView, { Marker } from \"react-native-maps\";\nimport MapViewDirections from \"react-native-maps-directions\";\nimport { BottomMapNav } from \"./BottomMapNav\";\nimport {useLazyQuery, useQuery} from \"@apollo/client\";\nimport {GET_ROUTES_BY_ID, GET_USER_ME} from \"../../api/queries\";\n\nconst windowWidth = Dimensions.get(\"window\").width;\nconst windowHeight = Dimensions.get(\"window\").height;\n\nconst FollowerMap = ({ navigation, route }: any) => {\n    const [currentLocation, setCurrentLocation]: any = useState(null);\n    const [initialRegion, setInitialRegion]: any = useState(null);\n    const [elapsedTime, setElapsedTime] = useState<number>(0);\n    let _mapView: any = useRef<MapView>(null); // Ref to control the map view\n\n    const startingPoint = route.params.propsData;\n    const points = route.params.data.route.points;\n    const [currentPoint, setCurrentPoint] = useState<number>(0);\n    const [isClose, setIsClose] = useState<boolean>(false);\n    const [totalDistanceLeft, setTotalDistanceLeft] = useState<number>(0);\n    const [stage, setStage] = useState('next-station');\n\n    const { data, loading, error } = useQuery(GET_USER_ME(startingPoint.id), {\n        variables: { id: startingPoint.id },\n        context: {\n            headers: {\n                Authorization: `Bearer ${process.env.EXPO_PUBLIC_JWT}`,\n            },\n        },\n    });\n\n\n    const goNextPoint = () => {\n        setCurrentPoint((prev) => prev + 1);\n        setStage('next-station');\n    };\n\n    const goToExercise = () => {\n        setStage('question');\n    };\n\n    const calculateTotalDistanceLeft = (currentLocation: any, points: any[], currentPoint: number) => {\n        let totalDistance = 0;\n        let startPoint = currentLocation;\n\n        for (let i = currentPoint; i < points.length; i++) {\n            const endPoint = points[i];\n            totalDistance += calculateDistance(startPoint.latitude, startPoint.longitude, endPoint.lat, endPoint.lng);\n            startPoint = { latitude: endPoint.lat, longitude: endPoint.lng };\n        }\n\n        return totalDistance;\n    };\n\n    const calculateDistance = (lat1: number, lon1: number, lat2: number, lon2: number) => {\n        const R = 6371;\n        const dLat = (lat2 - lat1) * (Math.PI / 180);\n        const dLon = (lon2 - lon1) * (Math.PI / 180);\n        const a =\n            Math.sin(dLat / 2) * Math.sin(dLat / 2) +\n            Math.cos(lat1 * (Math.PI / 180)) * Math.cos(lat2 * (Math.PI / 180)) *\n            Math.sin(dLon / 2) * Math.sin(dLon / 2);\n        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));\n        return R * c;\n    };\n\n    useEffect(() => {\n        if (currentLocation && points.length > 0 && points[currentPoint]) {\n            const distance = calculateDistance(\n                currentLocation.latitude,\n                currentLocation.longitude,\n                points[currentPoint].lat,\n                points[currentPoint].lng\n            );\n\n            if (distance < 0.05) {\n                setIsClose(true);\n                setStage('close');\n            } else {\n                setStage('next-station');\n                setIsClose(false);\n            }\n\n            _mapView.current?.animateToRegion({\n                latitude: currentLocation.latitude,\n                longitude: currentLocation.longitude,\n                latitudeDelta: 0.003,\n                longitudeDelta: 0.003,\n            }, 500);\n\n            const totalDistance = calculateTotalDistanceLeft(currentLocation, points, currentPoint);\n            setTotalDistanceLeft(totalDistance);\n        }\n    }, [currentLocation, currentPoint, points]);\n\n    useEffect(() => {\n        let locationSubscription: any;\n\n        const startLocationTracking = async () => {\n            let { status } = await Location.requestForegroundPermissionsAsync();\n\n            if (status !== \"granted\") {\n                console.error(\"Location permission not granted\");\n                return;\n            }\n\n            locationSubscription = await Location.watchPositionAsync(\n                {\n                    accuracy: Location.Accuracy.High,\n                    timeInterval: 500,\n                    distanceInterval: 0.1,\n                },\n                (location) => {\n                    setCurrentLocation(location.coords);\n\n                    if (!initialRegion) {\n                        setInitialRegion({\n                            latitude: location.coords.latitude,\n                            longitude: location.coords.longitude,\n                            latitudeDelta: 0.003,\n                            longitudeDelta: 0.003,\n                        });\n                    }\n                }\n            );\n        };\n\n        startLocationTracking();\n\n        return () => {\n            if (locationSubscription) {\n                locationSubscription.remove();\n            }\n        };\n    }, []);\n\n    useEffect(() => {\n        const interval = setInterval(() => {\n            setElapsedTime((prev) => prev + 1);\n        }, 1000);\n\n        return () => clearInterval(interval);\n    }, []);\n\n    return (\n        <View style={styles.container}>\n            {initialRegion && (\n                <>\n                    <MapView\n                        style={styles.map}\n                        initialRegion={initialRegion}\n                        ref={(current) => {\n                            _mapView.current = current;\n                        }}\n                        zoomTapEnabled\n                        zoomControlEnabled\n                        showsBuildings={false}\n                        customMapStyle={mapStyle}\n                    >\n                        {currentLocation && (\n                            <>\n                                {/* Dynamic current location marker */}\n                                <Marker\n                                    coordinate={{\n                                        latitude: currentLocation.latitude,\n                                        longitude: currentLocation.longitude,\n                                    }}\n                                >\n                                    <Image\n                                        style={{ width: 20, height: 20 }}\n                                        source={require(\"../../assets/icons/current_location.png\")}\n                                    />\n                                </Marker>\n\n                                <Marker\n                                    coordinate={{\n                                        latitude: points[currentPoint].lat,\n                                        longitude: points[currentPoint].lng,\n                                    }}\n                                >\n                                    <Image\n                                        style={{ width: 25, height: 32.5 }}\n                                        source={require(\"../../assets/icons/map_destination_ping.png\")}\n                                    />\n                                </Marker>\n\n                                {/*<MapViewDirections*/}\n                                {/*    key={points[currentPoint].title}*/}\n                                {/*    mode={\"WALKING\"}*/}\n                                {/*    strokeWidth={4}*/}\n                                {/*    strokeColor='#295046'*/}\n                                {/*    origin={{*/}\n                                {/*        latitude: currentLocation.latitude,*/}\n                                {/*        longitude: currentLocation.longitude,*/}\n                                {/*    }}*/}\n                                {/*    destination={{*/}\n                                {/*        latitude: points[currentPoint].lat,*/}\n                                {/*        longitude: points[currentPoint].lng,*/}\n                                {/*    }}*/}\n                                {/*    apikey={process.env.EXPO_PUBLIC_API_KEY!}*/}\n                                {/*/>*/}\n                            </>\n                        )}\n                    </MapView>\n                    <BottomMapNav\n                        nextStation={points[currentPoint].title}\n                        currentUserMe={data}\n                        theme=\"Trasa historyczna\"\n                        description={points[currentPoint].description}\n                        duration={elapsedTime}\n                        stage={stage}\n                        goNextStage={goNextPoint}\n                        goToExercise={goToExercise}\n                        distanceLeft={Math.round(totalDistanceLeft * 100) / 100}\n                    />\n                </>\n            )}\n        </View>\n    );\n};\n\nconst styles = StyleSheet.create({\n    container: {\n        flex: 1,\n        alignItems: \"center\",\n        justifyContent: \"center\",\n    },\n    map: {\n        width: \"100%\",\n        height: Dimensions.get(\"window\").height * 0.7,\n    },\n});\n\nconst mapStyle = [\n    {\n        featureType: \"poi.business\",\n        elementType: \"labels.text.fill\",\n        stylers: [\n            {\n                visibility: \"off\",\n            },\n        ],\n    },\n    {\n        featureType: \"poi.business\",\n        elementType: \"labels.text.stroke\",\n        stylers: [\n            {\n                visibility: \"off\",\n            },\n        ],\n    },\n];\n\nexport default FollowerMap;\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/components/Map/FollowerMap.tsx b/components/Map/FollowerMap.tsx
+--- a/components/Map/FollowerMap.tsx	(revision 5ba991dc82ac6a1f7bb3e2d4c0ba5e5364b2cbc0)
++++ b/components/Map/FollowerMap.tsx	(date 1727575784098)
+@@ -1,5 +1,5 @@
+ import React, { useEffect, useRef, useState } from "react";
+-import { Dimensions, Image, StyleSheet, View } from "react-native";
++import {Button, Dimensions, Image, StyleSheet, View} from "react-native";
+ import * as Location from "expo-location";
+ import MapView, { Marker } from "react-native-maps";
+ import MapViewDirections from "react-native-maps-directions";
+@@ -32,16 +32,28 @@
+         },
+     });
+ 
+-
+     const goNextPoint = () => {
++        console.log(currentPoint)
++        console.log(points.length)
++
++        if(currentPoint + 1 === points.length - 1) {
++            navigation.navigate('FinishScreen');
++        }
++
+         setCurrentPoint((prev) => prev + 1);
+         setStage('next-station');
+     };
+ 
+     const goToExercise = () => {
++        goNextPoint();
+         setStage('question');
+     };
+ 
++    const goToTaskComplete = () => {
++        goNextPoint();
++        setStage('task-complete');
++    };
++
+     const calculateTotalDistanceLeft = (currentLocation: any, points: any[], currentPoint: number) => {
+         let totalDistance = 0;
+         let startPoint = currentLocation;
+@@ -186,7 +198,6 @@
+                                         source={require("../../assets/icons/map_destination_ping.png")}
+                                     />
+                                 </Marker>
+-
+                                 {/*<MapViewDirections*/}
+                                 {/*    key={points[currentPoint].title}*/}
+                                 {/*    mode={"WALKING"}*/}
+@@ -205,6 +216,7 @@
+                             </>
+                         )}
+                     </MapView>
++                    <Button onPress={() => goToExercise()} title={'TEST'}/>
+                     <BottomMapNav
+                         nextStation={points[currentPoint].title}
+                         currentUserMe={data}
+@@ -214,6 +226,7 @@
+                         stage={stage}
+                         goNextStage={goNextPoint}
+                         goToExercise={goToExercise}
++                        goToTaskComplete={goToTaskComplete}
+                         distanceLeft={Math.round(totalDistanceLeft * 100) / 100}
+                     />
+                 </>
+Index: .env
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.env b/.env
+new file mode 100644
+--- /dev/null	(date 1727568769210)
++++ b/.env	(date 1727568769210)
+@@ -0,0 +1,2 @@
++EXPO_PUBLIC_API_KEY=AIzaSyBpkEsRKz7XCYYDAomF26zZZsYZl-0NDEI
++EXPO_PUBLIC_JWT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NmY4Mjc1ZGVkMThiYjMwMDQ3MmMzN2QiLCJ0b2tlblR5cGUiOiJzZXNzaW9uIiwidXNlclR5cGUiOiJVc2VyIiwiaWF0IjoxNzI3NTM5MDYwLCJleHAiOjI3Mjc1NDI2NjB9.ruTji7VlWYveGwP9DRAymmlTTfUQgZZIX2b03XG2tko
+\ No newline at end of file
+Index: components/MapNavStages/QuestionStage.tsx
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import React from \"react\";\nimport { Button, Dimensions, StyleSheet, Text, View, ActivityIndicator } from \"react-native\";\nimport { useMutation } from \"@apollo/client\";\nimport gql from \"graphql-tag\";\nimport {SUBMIT_ANSWER} from \"../../api/queries\";\n\nexport function QuestionStage({ goNextStage, currentUserMe }: any) {\n    const pointIndx = currentUserMe.userMe.progressOfRoute.currentPointIdx;\n    const routeId = currentUserMe.userMe.progressOfRoute.routeId;\n    const question = currentUserMe.userMe.progressOfRoute.currentPoint.question;\n    const answers = currentUserMe.userMe.progressOfRoute.currentPoint.answers;\n\n    const [badAnswers, setBadAnswers] = React.useState<number[]>([]);\n    const [submitAnswer, { data, loading, error }] = useMutation(SUBMIT_ANSWER, {\n        context: {\n            headers: {\n                Authorization: `Bearer ${process.env.EXPO_PUBLIC_JWT}`,\n            },\n        },\n    });\n\n    const addBadAnswer = (answerIndex: number) => {\n        setBadAnswers([...badAnswers, answerIndex]);\n    };\n\n    const handleAnswerClick = (answerIndex: number) => {\n        submitAnswer({\n            variables: { routeId: routeId, pointIdx: pointIndx, answerIdx: answerIndex },\n        })\n            .then((response) => {\n                console.log(\"Answer submitted successfully:\", response.data);\n                goNextStage();\n            })\n            .catch((error) => {\n                console.error(\"Error submitting answer:\", error);\n                addBadAnswer(answerIndex);\n                goNextStage();\n            });\n    };\n\n    return (\n        <View style={styles.container}>\n            <Text style={styles.formattedText}>Your Question</Text>\n            <Text>{question}</Text>\n            {answers.map((answer: string, index: number) => {\n                return (\n                    <View\n                        style={{ ...styles.buttonStyle, opacity: badAnswers.includes(index) ? 0.5 : 1 }}\n                        key={index}\n                    >\n                        <Button color=\"#295046\" title={answer} onPress={() => handleAnswerClick(index)} />\n                    </View>\n                );\n            })}\n        </View>\n    );\n}\n\nconst styles = StyleSheet.create({\n    container: {\n        height: Dimensions.get(\"window\").height * 0.6,\n        width: \"100%\",\n        backgroundColor: \"white\",\n        borderRadius: 30,\n        paddingHorizontal: \"8%\",\n        paddingVertical: 4,\n        gap: Dimensions.get(\"window\").height * 0.02,\n    },\n    formattedText: {\n        fontFamily: \"CaveatBrush_400Regular\",\n        color: \"#295046\",\n        fontSize: 40,\n    },\n    buttonStyle: {\n        backgroundColor: \"#E8F3F0\",\n        borderRadius: 20,\n    },\n});\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/components/MapNavStages/QuestionStage.tsx b/components/MapNavStages/QuestionStage.tsx
+--- a/components/MapNavStages/QuestionStage.tsx	(revision 5ba991dc82ac6a1f7bb3e2d4c0ba5e5364b2cbc0)
++++ b/components/MapNavStages/QuestionStage.tsx	(date 1727575042635)
+@@ -5,6 +5,10 @@
+ import {SUBMIT_ANSWER} from "../../api/queries";
+ 
+ export function QuestionStage({ goNextStage, currentUserMe }: any) {
++
++    if(!currentUserMe)
++        return <></>
++
+     const pointIndx = currentUserMe.userMe.progressOfRoute.currentPointIdx;
+     const routeId = currentUserMe.userMe.progressOfRoute.routeId;
+     const question = currentUserMe.userMe.progressOfRoute.currentPoint.question;
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"AutoImportSettings\">\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\n  </component>\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"30b3ca93-8500-4d59-9c29-ea3008e442e8\" name=\"Changes\" comment=\"more backend integration\">\n      <change afterPath=\"$PROJECT_DIR$/.env\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/App.tsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/App.tsx\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/api/queries.ts\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/api/queries.ts\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/api/types.ts\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/api/types.ts\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/components/Map/BottomMapNav.tsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/components/Map/BottomMapNav.tsx\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/components/Map/FollowerMap.tsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/components/Map/FollowerMap.tsx\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/components/Map/Map.tsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/components/Map/Map.tsx\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/components/Map/MarkerDetails.tsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/components/Map/MarkerDetails.tsx\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/components/MapNavStages/QuestionStage.tsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/components/MapNavStages/QuestionStage.tsx\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/screens/Login.tsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/screens/Login.tsx\" afterDir=\"false\" />\n    </list>\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"FileTemplateManagerImpl\">\n    <option name=\"RECENT_TEMPLATES\">\n      <list>\n        <option value=\"TypeScript JSX File\" />\n      </list>\n    </option>\n  </component>\n  <component name=\"Git.Settings\">\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\n      <map>\n        <entry key=\"$PROJECT_DIR$\" value=\"main\" />\n      </map>\n    </option>\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\n  </component>\n  <component name=\"GitHubPullRequestSearchHistory\">{\n  &quot;lastFilter&quot;: {\n    &quot;state&quot;: &quot;OPEN&quot;,\n    &quot;assignee&quot;: &quot;matjamr&quot;\n  }\n}</component>\n  <component name=\"GithubPullRequestsUISettings\">{\n  &quot;selectedUrlAndAccountId&quot;: {\n    &quot;url&quot;: &quot;https://github.com/legumina-hackyeah-2024/mobile.git&quot;,\n    &quot;accountId&quot;: &quot;d771024c-de87-4bcd-b3f1-97abe957b0a6&quot;\n  }\n}</component>\n  <component name=\"ProjectColorInfo\">{\n  &quot;associatedIndex&quot;: 4\n}</component>\n  <component name=\"ProjectId\" id=\"2mZoTTYcRtaF0aM6bBGHgnz0acO\" />\n  <component name=\"ProjectViewState\">\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\">{\n  &quot;keyToString&quot;: {\n    &quot;React Native.iOS.executor&quot;: &quot;Run&quot;,\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\n    &quot;git-widget-placeholder&quot;: &quot;master&quot;,\n    &quot;last_opened_file_path&quot;: &quot;/Users/mateusz.jamroz/dev/react-native-pg/navigation/api&quot;,\n    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,\n    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,\n    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,\n    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,\n    &quot;nodejs_interpreter_path&quot;: &quot;node&quot;,\n    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,\n    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,\n    &quot;ts.external.directory.path&quot;: &quot;/Users/mateusz.jamroz/dev/react-native-pg/navigation/node_modules/typescript/lib&quot;,\n    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;\n  }\n}</component>\n  <component name=\"RecentsManager\">\n    <key name=\"CopyFile.RECENT_KEYS\">\n      <recent name=\"$PROJECT_DIR$/api\" />\n      <recent name=\"$PROJECT_DIR$/assets/icons\" />\n      <recent name=\"$PROJECT_DIR$/components/MapNavStages\" />\n      <recent name=\"$PROJECT_DIR$/assets/fonts\" />\n      <recent name=\"$PROJECT_DIR$/components/Map\" />\n    </key>\n    <key name=\"MoveFile.RECENT_KEYS\">\n      <recent name=\"$PROJECT_DIR$/components/Map\" />\n      <recent name=\"$PROJECT_DIR$/screens/Profile\" />\n      <recent name=\"$PROJECT_DIR$/api\" />\n    </key>\n  </component>\n  <component name=\"RunManager\" selected=\"React Native.iOS\">\n    <configuration name=\"Android\" type=\"ReactNative\" factoryName=\"React Native\">\n      <working-dir value=\"$PROJECT_DIR$\" />\n      <node-interpreter value=\"project\" />\n      <react-native value=\"$PROJECT_DIR$/node_modules/react-native\" />\n      <platform value=\"ANDROID\" />\n      <envs />\n      <only-packager />\n      <method v=\"2\">\n        <option name=\"ReactNativePackager\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"iOS\" type=\"ReactNative\" factoryName=\"React Native\">\n      <working-dir value=\"$PROJECT_DIR$\" />\n      <node-interpreter value=\"project\" />\n      <react-native value=\"$PROJECT_DIR$/node_modules/react-native\" />\n      <platform value=\"IOS\" />\n      <envs />\n      <only-packager />\n      <method v=\"2\">\n        <option name=\"ReactNativePackager\" enabled=\"true\" />\n      </method>\n    </configuration>\n  </component>\n  <component name=\"SharedIndexes\">\n    <attachedChunks>\n      <set>\n        <option value=\"bundled-js-predefined-d6986cc7102b-7c0b70fcd90d-JavaScript-WS-242.21829.149\" />\n      </set>\n    </attachedChunks>\n  </component>\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\n      <changelist id=\"30b3ca93-8500-4d59-9c29-ea3008e442e8\" name=\"Changes\" comment=\"\" />\n      <created>1727293466392</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1727293466392</updated>\n      <workItem from=\"1727293467413\" duration=\"786000\" />\n      <workItem from=\"1727297192123\" duration=\"66000\" />\n      <workItem from=\"1727297262152\" duration=\"747000\" />\n      <workItem from=\"1727300006740\" duration=\"26000\" />\n      <workItem from=\"1727300100889\" duration=\"1360000\" />\n      <workItem from=\"1727330511076\" duration=\"11000\" />\n      <workItem from=\"1727521824316\" duration=\"45686000\" />\n      <workItem from=\"1727569963089\" duration=\"4373000\" />\n    </task>\n    <task id=\"LOCAL-00001\" summary=\"init\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1727522430620</created>\n      <option name=\"number\" value=\"00001\" />\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1727522430620</updated>\n    </task>\n    <task id=\"LOCAL-00002\" summary=\"navigation + grapql initializaion\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1727525728596</created>\n      <option name=\"number\" value=\"00002\" />\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1727525728596</updated>\n    </task>\n    <task id=\"LOCAL-00003\" summary=\"reconfigured navigation\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1727528634219</created>\n      <option name=\"number\" value=\"00003\" />\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1727528634219</updated>\n    </task>\n    <task id=\"LOCAL-00004\" summary=\"navigation with simple markers and mocked backend connectivity\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1727530734315</created>\n      <option name=\"number\" value=\"00004\" />\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1727530734315</updated>\n    </task>\n    <task id=\"LOCAL-00005\" summary=\"more work with login and oauth\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1727532792217</created>\n      <option name=\"number\" value=\"00005\" />\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1727532792217</updated>\n    </task>\n    <task id=\"LOCAL-00006\" summary=\"i guess working modal somehow XD\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1727534398653</created>\n      <option name=\"number\" value=\"00006\" />\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1727534398653</updated>\n    </task>\n    <task id=\"LOCAL-00007\" summary=\"dynamic bottom drawer rendering\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1727537171755</created>\n      <option name=\"number\" value=\"00007\" />\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1727537171756</updated>\n    </task>\n    <task id=\"LOCAL-00008\" summary=\"more work\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1727537617937</created>\n      <option name=\"number\" value=\"00008\" />\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1727537617937</updated>\n    </task>\n    <task id=\"LOCAL-00009\" summary=\"apolloe\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1727538463082</created>\n      <option name=\"number\" value=\"00009\" />\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1727538463082</updated>\n    </task>\n    <task id=\"LOCAL-00010\" summary=\"working lol\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1727540182209</created>\n      <option name=\"number\" value=\"00010\" />\n      <option name=\"presentableId\" value=\"LOCAL-00010\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1727540182209</updated>\n    </task>\n    <task id=\"LOCAL-00011\" summary=\"postacie in progress\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1727542081015</created>\n      <option name=\"number\" value=\"00011\" />\n      <option name=\"presentableId\" value=\"LOCAL-00011\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1727542081015</updated>\n    </task>\n    <task id=\"LOCAL-00012\" summary=\"person screen done\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1727542758339</created>\n      <option name=\"number\" value=\"00012\" />\n      <option name=\"presentableId\" value=\"LOCAL-00012\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1727542758339</updated>\n    </task>\n    <task id=\"LOCAL-00013\" summary=\"working path\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1727551879068</created>\n      <option name=\"number\" value=\"00013\" />\n      <option name=\"presentableId\" value=\"LOCAL-00013\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1727551879068</updated>\n    </task>\n    <task id=\"LOCAL-00014\" summary=\"IT WORKS LOL\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1727552847807</created>\n      <option name=\"number\" value=\"00014\" />\n      <option name=\"presentableId\" value=\"LOCAL-00014\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1727552847807</updated>\n    </task>\n    <task id=\"LOCAL-00015\" summary=\"more work\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1727555167288</created>\n      <option name=\"number\" value=\"00015\" />\n      <option name=\"presentableId\" value=\"LOCAL-00015\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1727555167288</updated>\n    </task>\n    <task id=\"LOCAL-00016\" summary=\"NEARLY WORKING OMGGG\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1727561447238</created>\n      <option name=\"number\" value=\"00016\" />\n      <option name=\"presentableId\" value=\"LOCAL-00016\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1727561447238</updated>\n    </task>\n    <task id=\"LOCAL-00017\" summary=\"backend integration part 1\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1727563328783</created>\n      <option name=\"number\" value=\"00017\" />\n      <option name=\"presentableId\" value=\"LOCAL-00017\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1727563328783</updated>\n    </task>\n    <task id=\"LOCAL-00018\" summary=\"more backend integration\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1727568296731</created>\n      <option name=\"number\" value=\"00018\" />\n      <option name=\"presentableId\" value=\"LOCAL-00018\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1727568296731</updated>\n    </task>\n    <option name=\"localTasksCounter\" value=\"19\" />\n    <servers />\n  </component>\n  <component name=\"TypeScriptGeneratedFilesManager\">\n    <option name=\"version\" value=\"3\" />\n    <option name=\"exactExcludedFiles\">\n      <list>\n        <option value=\"$PROJECT_DIR$/metro.config.js\" />\n      </list>\n    </option>\n  </component>\n  <component name=\"VcsManagerConfiguration\">\n    <option name=\"CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT\" value=\"false\" />\n    <MESSAGE value=\"init\" />\n    <MESSAGE value=\"navigation + grapql initializaion\" />\n    <MESSAGE value=\"base navigation UI design\" />\n    <MESSAGE value=\"reconfigured navigation\" />\n    <MESSAGE value=\"navigation with simple markers and mocked backend connectivity\" />\n    <MESSAGE value=\"more work with login and oauth\" />\n    <MESSAGE value=\"i guess working modal somehow XD\" />\n    <MESSAGE value=\"dynamic bottom drawer rendering\" />\n    <MESSAGE value=\"apolloe\" />\n    <MESSAGE value=\"working lol\" />\n    <MESSAGE value=\"postacie in progress\" />\n    <MESSAGE value=\"person screen done\" />\n    <MESSAGE value=\"working path\" />\n    <MESSAGE value=\"IT WORKS LOL\" />\n    <MESSAGE value=\"more work\" />\n    <MESSAGE value=\"NEARLY WORKING OMGGG\" />\n    <MESSAGE value=\"backend integration part 1\" />\n    <MESSAGE value=\"more backend integration\" />\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"more backend integration\" />\n  </component>\n  <component name=\"XDebuggerManager\">\n    <breakpoint-manager>\n      <breakpoints>\n        <line-breakpoint enabled=\"true\" type=\"javascript\">\n          <url>file://$PROJECT_DIR$/components/Map/BottomMapNav.tsx</url>\n          <line>39</line>\n          <option name=\"timeStamp\" value=\"3\" />\n        </line-breakpoint>\n      </breakpoints>\n    </breakpoint-manager>\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 5ba991dc82ac6a1f7bb3e2d4c0ba5e5364b2cbc0)
++++ b/.idea/workspace.xml	(date 1727576364940)
+@@ -6,16 +6,16 @@
+   <component name="ChangeListManager">
+     <list default="true" id="30b3ca93-8500-4d59-9c29-ea3008e442e8" name="Changes" comment="more backend integration">
+       <change afterPath="$PROJECT_DIR$/.env" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/.env.example" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/assets/images/last_person.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/assets/images/you_did_it.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/components/MapNavStages/QuestionComplete.tsx" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/screens/FinishScreen.tsx" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/App.tsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/api/queries.ts" beforeDir="false" afterPath="$PROJECT_DIR$/api/queries.ts" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/api/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/api/types.ts" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/components/Map/BottomMapNav.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/Map/BottomMapNav.tsx" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/components/Map/FollowerMap.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/Map/FollowerMap.tsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/components/Map/Map.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/Map/Map.tsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/components/Map/MarkerDetails.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/Map/MarkerDetails.tsx" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/components/MapNavStages/QuestionStage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/MapNavStages/QuestionStage.tsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/screens/Login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/screens/Login.tsx" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -56,28 +56,28 @@
+   <component name="ProjectViewState">
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent">{
+-  &quot;keyToString&quot;: {
+-    &quot;React Native.iOS.executor&quot;: &quot;Run&quot;,
+-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+-    &quot;last_opened_file_path&quot;: &quot;/Users/mateusz.jamroz/dev/react-native-pg/navigation/api&quot;,
+-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+-    &quot;nodejs_interpreter_path&quot;: &quot;node&quot;,
+-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+-    &quot;ts.external.directory.path&quot;: &quot;/Users/mateusz.jamroz/dev/react-native-pg/navigation/node_modules/typescript/lib&quot;,
+-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
++  <component name="PropertiesComponent"><![CDATA[{
++  "keyToString": {
++    "React Native.iOS.executor": "Run",
++    "RunOnceActivity.ShowReadmeOnStart": "true",
++    "git-widget-placeholder": "master",
++    "last_opened_file_path": "/Users/mateusz.jamroz/dev/react-native-pg/navigation/components/MapNavStages",
++    "node.js.detected.package.eslint": "true",
++    "node.js.detected.package.tslint": "true",
++    "node.js.selected.package.eslint": "(autodetect)",
++    "node.js.selected.package.tslint": "(autodetect)",
++    "nodejs_interpreter_path": "node",
++    "nodejs_package_manager_path": "npm",
++    "settings.editor.selected.configurable": "preferences.pluginManager",
++    "ts.external.directory.path": "/Users/mateusz.jamroz/dev/react-native-pg/navigation/node_modules/typescript/lib",
++    "vue.rearranger.settings.migration": "true"
+   }
+-}</component>
++}]]></component>
+   <component name="RecentsManager">
+     <key name="CopyFile.RECENT_KEYS">
++      <recent name="$PROJECT_DIR$/components/MapNavStages" />
+       <recent name="$PROJECT_DIR$/api" />
+       <recent name="$PROJECT_DIR$/assets/icons" />
+-      <recent name="$PROJECT_DIR$/components/MapNavStages" />
+       <recent name="$PROJECT_DIR$/assets/fonts" />
+       <recent name="$PROJECT_DIR$/components/Map" />
+     </key>
+@@ -133,7 +133,7 @@
+       <workItem from="1727300100889" duration="1360000" />
+       <workItem from="1727330511076" duration="11000" />
+       <workItem from="1727521824316" duration="45686000" />
+-      <workItem from="1727569963089" duration="4373000" />
++      <workItem from="1727569963089" duration="6394000" />
+     </task>
+     <task id="LOCAL-00001" summary="init">
+       <option name="closed" value="true" />
+@@ -279,7 +279,15 @@
+       <option name="project" value="LOCAL" />
+       <updated>1727568296731</updated>
+     </task>
+-    <option name="localTasksCounter" value="19" />
++    <task id="LOCAL-00019" summary="more backend integration">
++      <option name="closed" value="true" />
++      <created>1727574520560</created>
++      <option name="number" value="00019" />
++      <option name="presentableId" value="LOCAL-00019" />
++      <option name="project" value="LOCAL" />
++      <updated>1727574520560</updated>
++    </task>
++    <option name="localTasksCounter" value="20" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+@@ -317,7 +325,7 @@
+       <breakpoints>
+         <line-breakpoint enabled="true" type="javascript">
+           <url>file://$PROJECT_DIR$/components/Map/BottomMapNav.tsx</url>
+-          <line>39</line>
++          <line>43</line>
+           <option name="timeStamp" value="3" />
+         </line-breakpoint>
+       </breakpoints>
+Index: components/MapNavStages/QuestionComplete.tsx
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/components/MapNavStages/QuestionComplete.tsx b/components/MapNavStages/QuestionComplete.tsx
+new file mode 100644
+--- /dev/null	(date 1727575095632)
++++ b/components/MapNavStages/QuestionComplete.tsx	(date 1727575095632)
+@@ -0,0 +1,34 @@
++import React from "react";
++import {Button, Dimensions, StyleSheet, Text, View} from "react-native";
++
++export function QuestionComplete({goNextStage}: any) {
++    return <View style={styles.container}>
++        <Text style={styles.formattedText}>Zadanie Wykonane</Text>
++        <Text style={{fontFamily: 'Sofia Sans'}}>Lorem ipsum dolor sit amet consectetur. Tristique pellentesque tellus tellus auctor velit ornare urna eget tortor. Sollicitudin quisque tristique viverra tortor. Sollicitudin quisque. tristique viverra tortor. Sollicitudin quisque.</Text>
++        <View style={styles.buttonStyle}>
++            <Button color='white' title='Ruszamy dalej' onPress={goNextStage}/>
++        </View>
++    </View>
++
++}
++
++const styles = StyleSheet.create({
++    container: {
++        height: Dimensions.get('window').height * 0.4,
++        width: '100%',
++        backgroundColor: 'white',
++        borderRadius: 30,
++        padding: '8%',
++        gap: Dimensions.get('window').height * 0.02
++    },
++    formattedText: {
++        fontFamily: 'CaveatBrush_400Regular',
++        color: '#295046',
++        fontSize: 40
++    },
++    buttonStyle: {
++        backgroundColor: '#295046',
++        borderRadius: 20,
++        padding: 8
++    }
++})
+\ No newline at end of file
